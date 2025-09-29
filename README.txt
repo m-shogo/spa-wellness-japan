@@ -32,7 +32,7 @@ WP CLI
 https://keikenchi.com/steps-to-build-a-wordpress-theme-plugin-development-environment-with-docker
 
 下記コマンドでコンテナに入り、コンテナ内でコマンド入力。「wordpress」部分が「docker-compose.yml」で指定したコンテナ名。
-docker exec -it pcdgc-arcs3-internationalschool /bin/bash
+docker exec -it pcdgc-spa-wellness-japan-internationalschool /bin/bash
 
 上記の記事とはコマンド違うけど気にしない。
 シェルスクリプトファイルの権限を変更。

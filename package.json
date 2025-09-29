@@ -1,19 +1,19 @@
 {
   "config": {
-    "theme_name": "arcs3"
+    "theme_name": "spa-wellness-japan"
   },
   "scripts": {
-    "css:sass": "sass --style=compressed wp/wp-content/themes/arcs3/css/:wp/wp-content/themes/arcs3/css/",
-    "css:autoprefix": "postcss wp/wp-content/themes/arcs3/css/style.css -u autoprefixer -o wp/wp-content/themes/arcs3/css/style.css",
+    "css:sass": "sass --style=compressed wp/wp-content/themes/spa-wellness-japan/css/:wp/wp-content/themes/spa-wellness-japan/css/",
+    "css:autoprefix": "postcss wp/wp-content/themes/spa-wellness-japan/css/style.css -u autoprefixer -o wp/wp-content/themes/spa-wellness-japan/css/style.css",
     "css:min": "cleancss -o wp/wp-content/themes/*/css/style.css wp/wp-content/themes/*/css/style.css",
     "css": "run-s css:sass",
-    "watch:css": "chokidar \"wp/wp-content/themes/arcs3/css/**/*.scss\" -c \"npm run css\" --initial",
-    "watch:img": "chokidar \"wp/wp-content/themes/arcs3/images_orignal\" -c \"node imagemin.mjs\" --initial",
-    "watch:webp": "chokidar \"wp/wp-content/themes/arcs3/images_orignal\" -c \"node webp.mjs\" --initial",
+    "watch:css": "chokidar \"wp/wp-content/themes/spa-wellness-japan/css/**/*.scss\" -c \"npm run css\" --initial",
+    "watch:img": "chokidar \"wp/wp-content/themes/spa-wellness-japan/images_orignal\" -c \"node imagemin.mjs\" --initial",
+    "watch:webp": "chokidar \"wp/wp-content/themes/spa-wellness-japan/images_orignal\" -c \"node webp.mjs\" --initial",
     "watch:server": "browser-sync start --config bs-config.js",
     "watch": "run-p watch:css watch:img watch:webp watch:server",
-    "lint:scss": "stylelint \"wp/wp-content/themes/arcs3/css/*.scss\"",
-    "format:scss": "stylelint --fix \"wp/wp-content/themes/arcs3/css/*.scss\"",
+    "lint:scss": "stylelint \"wp/wp-content/themes/spa-wellness-japan/css/*.scss\"",
+    "format:scss": "stylelint --fix \"wp/wp-content/themes/spa-wellness-japan/css/*.scss\"",
     "format": "run-p format:scss"
   },
   "devDependencies": {

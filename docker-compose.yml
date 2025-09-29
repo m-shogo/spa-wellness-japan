@@ -4,7 +4,7 @@ services:
 
   wordpress:
     build: ./
-    container_name: arcs3
+    container_name: spa-wellness-japan
     ports:
       - "8000:80"
     restart: "no"
