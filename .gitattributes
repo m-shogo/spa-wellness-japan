@@ -1,0 +1,32 @@
+# すべてのテキストファイルにLFを強制する
+* text=auto eol=lf
+
+# バイナリファイルの設定（画像ファイルなど）
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.bmp binary
+*.ico binary
+
+# ドキュメントファイルの設定
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# 圧縮ファイルの設定
+*.zip binary
+*.tar binary
+*.gz binary
+*.rar binary
+*.7z binary
+
+# 実行ファイルの設定
+*.exe binary
+*.dll binary
+*.so binary

@@ -1,0 +1,26 @@
+# テスト環境用デプロイ設定
+on:
+  push:
+    branches:
+      - develop # 対象ブランチ名 ！！！絶対にブランチ名を間違えないこと！！！
+name: Build and Deploy
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER_DEV }}
+          username: ${{ secrets.FTP_USERNAME_DEV }}
+          password: ${{ secrets.FTP_PASSWORD_DEV }}
+          server-dir: /codiadev3.site/public_html/frontend-dev-block/wp/wp-content/themes/codiawp_block/ # 必ず最後にスラッシュを付けること
+          local-dir: ./wp/wp-content/themes/codiawp_block/ # 必ず最後にスラッシュを付けること
+          protocol: ftps
+          exclude: |
+            **/test/**
+            **/test-*/**
+            **/images_orignal/**
+            **/css/**/*.scss
