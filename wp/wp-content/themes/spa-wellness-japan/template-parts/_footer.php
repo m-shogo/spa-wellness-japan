@@ -83,7 +83,7 @@
   </div>
   <div class="gf_information">
     <div class="global_inner">
-      <p class="gf_logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/common/logo.svg" alt="<?php bloginfo('name'); ?>"></a></p>
+      <p class="gf_logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/common/logo.webp" alt="<?php bloginfo('name'); ?>"></a></p>
       <address>
         <p class="gf_address">〒000-0000<br>東京都テスト区テスト町1-1-1</p>
         <p class="gf_tel">TEL:<a href="tel:00-0000-0000">00-0000-0000</a></p>

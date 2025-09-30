@@ -1,9 +1,9 @@
 <header id="global_header" class="global_header" itemscope itemtype="https://schema.org/WPHeader">
     <div class="inner">
         <?php if (is_front_page()) : ?>
-            <h1 class="gh_logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/common/logo.svg" alt="<?php bloginfo('name'); ?>"></a></h1>
+            <h1 class="gh_logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/common/logo.webp" alt="<?php bloginfo('name'); ?>"></a></h1>
         <?php else: ?>
-            <p class="gh_logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/common/logo.svg" alt="<?php bloginfo('name'); ?>"></a></p>
+            <p class="gh_logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/common/logo.webp" alt="<?php bloginfo('name'); ?>"></a></p>
         <?php endif; ?>
         <button type="button" class="gh_menu" id="gh_menu"><span class="icon"></span><i>menu</i></button>
     </div>
