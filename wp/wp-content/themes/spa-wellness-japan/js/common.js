@@ -310,7 +310,7 @@ window.addEventListener('resize', setVw);
     $('.global_navigation .gn_links-01 > li._hasChild').on({
       mouseenter: function () {
         const height = $(this).find('.gnl_inner').outerHeight(true);
-        if ($('html').hasClass('_pc')) {
+        if ($('html').hasClass('_pc') || $('html').hasClass('_tablet')) {
           $body.addClass('_open-bg');
           $(this).find('.gnl_wrapper').first().css({
             height: 0,
@@ -327,7 +327,7 @@ window.addEventListener('resize', setVw);
         //ここにはマウスを離したときの動作を記述
       },
       mouseleave: function () {
-        if ($('html').hasClass('_pc')) {
+        if ($('html').hasClass('_pc') || $('html').hasClass('_tablet')) {
           $body.removeClass('_open-bg');
           $(this)
             .find('.gnl_wrapper')
@@ -509,7 +509,7 @@ window.addEventListener('resize', setVw);
     $('#gh_menu').on('click', function () {
       if (state == false) {
         scrollpos = $(window).scrollTop();
-        $('body').addClass('_contentFixed').css({ top: -scrollpos });
+        $('body').addClass('_contentFixed');
         state = true;
       } else {
         $('body').removeClass('_contentFixed').css({ top: 0 });

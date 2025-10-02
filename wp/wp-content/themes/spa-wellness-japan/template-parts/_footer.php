@@ -1,95 +1,181 @@
 <footer id="global_footer" class="global_footer" itemscope itemtype="https://schema.org/WPFooter">
   <div class="gf_links-wrap">
-    <ul class="gf_links-01 module_menu-01">
-      <?php if (have_rows('common-menu-01', 'option')): ?>
-        <?php while (have_rows('common-menu-01', 'option')): the_row(); ?>
-          <?php
-          $title01 = get_sub_field('title-01');
-          $url01 = get_sub_field('url-01');
-          $target01 = get_sub_field('target-01');
-          $footer = get_sub_field('hide-footer');
-          $select01 = get_sub_field('select-01');
-          ?>
-          <?php if ($footer): ?>
-            <?php if ($select01): ?>
-              <li>
-                <button class="gfl_button mm_button" type="button"><span>開閉</span></button>
-                <a class="gfl_title mm_title" href="<?php echo $url01; ?>" <?php if ($target01): ?>target="_blank" <?php endif; ?>><?php echo $title01; ?></a>
-                <div class="gfl_wrapper mm_wrapper-01">
-                  <div class="gfl_inner mm_inner-01">
-                    <ul>
-                      <?php if (have_rows('hierarchy-02', 'option')): ?>
-                        <?php while (have_rows('hierarchy-02', 'option')): the_row(); ?>
-                          <?php
-                          $title02 = get_sub_field('title-02');
-                          $url02 = get_sub_field('url-02');
-                          $target02 = get_sub_field('target-02');
-                          $select02 = get_sub_field('select-02'); //4階層目なしの場合削除し、if( $select02 )内の4階層目なし<li>のみwhile内に残す
-                          ?>
-                          <?php if ($select02): ?>
-                            <li>
-                              <button class="gfl_button mm_button-01" type="button"><span>開閉</span></button>
-                              <a class="gfl_title mm_title-01" href="<?php echo $url02; ?>" <?php if ($target02): ?>target="_blank" <?php endif; ?>><?php echo $title02; ?></a>
-                              <div class="gfl_wrapper mm_wrapper-02">
-                                <div class="gfl_inner mm_inner-02">
-                                  <ul>
-                                    <?php if (have_rows('hierarchy-03', 'option')): ?>
-                                      <?php while (have_rows('hierarchy-03', 'option')): the_row(); ?>
-                                        <?php
-                                        $title03 = get_sub_field('title-03');
-                                        $url03 = get_sub_field('url-03');
-                                        $target03 = get_sub_field('target-03');
-                                        ?>
-                                        <li><a class="gfl_title mm_title-02" href="<?php echo $url03; ?>" <?php if ($target03): ?>target="_blank" <?php endif; ?>><?php echo $title03; ?></a></li>
-                                      <?php endwhile; ?>
-                                    <?php endif; ?>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-                          <?php else: ?>
-                            <li><a class="gfl_title mm_title-01" href="<?php echo $url02; ?>" <?php if ($target02): ?>target="_blank" <?php endif; ?>><?php echo $title02; ?></a></li>
+    <div class="global_inner">
+      <div class="main">
+        <ul class="gf_links-01 module_menu-01">
+          <?php if (have_rows('common-menu-01', 'option')): ?>
+            <?php while (have_rows('common-menu-01', 'option')): the_row(); ?>
+              <?php
+              $title01 = get_sub_field('title-01');
+              $url01 = get_sub_field('url-01');
+              $target01 = get_sub_field('target-01');
+              $footer = get_sub_field('hide-footer');
+              $select01 = get_sub_field('select-01');
+              ?>
+              <?php if ($footer): ?>
+                <?php if ($select01): ?>
+                  <li>
+                    <button class="gfl_button mm_button" type="button"><span>開閉</span></button>
+                    <a class="gfl_title mm_title" href="<?php echo $url01; ?>" <?php if ($target01): ?>target="_blank" <?php endif; ?>><?php echo $title01; ?></a>
+                    <div class="gfl_wrapper mm_wrapper-01">
+                      <div class="gfl_inner mm_inner-01">
+                        <ul>
+                          <?php if (have_rows('hierarchy-02', 'option')): ?>
+                            <?php while (have_rows('hierarchy-02', 'option')): the_row(); ?>
+                              <?php
+                              $title02 = get_sub_field('title-02');
+                              $url02 = get_sub_field('url-02');
+                              $target02 = get_sub_field('target-02');
+                              $select02 = get_sub_field('select-02'); //4階層目なしの場合削除し、if( $select02 )内の4階層目なし<li>のみwhile内に残す
+                              ?>
+                              <?php if ($select02): ?>
+                                <li>
+                                  <button class="gfl_button mm_button-01" type="button"><span>開閉</span></button>
+                                  <a class="gfl_title mm_title-01" href="<?php echo $url02; ?>" <?php if ($target02): ?>target="_blank" <?php endif; ?>><?php echo $title02; ?></a>
+                                  <div class="gfl_wrapper mm_wrapper-02">
+                                    <div class="gfl_inner mm_inner-02">
+                                      <ul>
+                                        <?php if (have_rows('hierarchy-03', 'option')): ?>
+                                          <?php while (have_rows('hierarchy-03', 'option')): the_row(); ?>
+                                            <?php
+                                            $title03 = get_sub_field('title-03');
+                                            $url03 = get_sub_field('url-03');
+                                            $target03 = get_sub_field('target-03');
+                                            ?>
+                                            <li><a class="gfl_title mm_title-02" href="<?php echo $url03; ?>" <?php if ($target03): ?>target="_blank" <?php endif; ?>><?php echo $title03; ?></a></li>
+                                          <?php endwhile; ?>
+                                        <?php endif; ?>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </li>
+                              <?php else: ?>
+                                <li><a class="gfl_title mm_title-01" href="<?php echo $url02; ?>" <?php if ($target02): ?>target="_blank" <?php endif; ?>><?php echo $title02; ?></a></li>
+                              <?php endif; ?>
+                            <?php endwhile; ?>
                           <?php endif; ?>
-                        <?php endwhile; ?>
-                      <?php endif; ?>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            <?php else: ?>
-              <li>
-                <a class="gfl_title mm_title" href="<?php echo $url01; ?>" <?php if ($target01): ?>target="_blank" <?php endif; ?>><?php echo $title01; ?></a>
-              </li>
-            <?php endif; ?>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                <?php else: ?>
+                  <li>
+                    <a class="gfl_title mm_title" href="<?php echo $url01; ?>" <?php if ($target01): ?>target="_blank" <?php endif; ?>><?php echo $title01; ?></a>
+                  </li>
+                <?php endif; ?>
+              <?php endif; ?>
+            <?php endwhile; ?>
           <?php endif; ?>
-        <?php endwhile; ?>
-      <?php endif; ?>
-    </ul>
-    <ul class="gf_links-02 module_menu-02">
-      <?php if (have_rows('common-submenu-01', 'option')): ?>
-        <?php while (have_rows('common-submenu-01', 'option')): the_row(); ?>
-          <?php
-          $title = get_sub_field('title');
-          $url = get_sub_field('url');
-          $target = get_sub_field('target');
-          $footer = get_sub_field('hide-footer');
-          ?>
-          <?php if ($footer): ?>
-            <li><a href="<?php echo $url; ?>" <?php if ($target): ?>target="_blank" <?php endif; ?>><?php echo $title; ?></a></li>
+        </ul>
+        <ul class="gf_links-02 module_menu-02">
+          <?php if (have_rows('common-submenu-01', 'option')): ?>
+            <?php while (have_rows('common-submenu-01', 'option')): the_row(); ?>
+              <?php
+              $title = get_sub_field('title');
+              $url = get_sub_field('url');
+              $target = get_sub_field('target');
+              $footer = get_sub_field('hide-footer');
+              ?>
+              <?php if ($footer): ?>
+                <li><a href="<?php echo $url; ?>" <?php if ($target): ?>target="_blank" <?php endif; ?>><?php echo $title; ?></a></li>
+              <?php endif; ?>
+            <?php endwhile; ?>
           <?php endif; ?>
-        <?php endwhile; ?>
-      <?php endif; ?>
-    </ul>
+        </ul>
+      </div>
+      <div class="sub">
+        <a href="" class="module_button-icon">
+          <div class="icon">
+            <svg width="26" height="21" viewBox="0 0 26 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.3667 17.4443C4.83283 17.3388 6.34583 17.3903 7.854 17.5771L8.45459 17.6582C9.81059 17.8572 11.1616 18.1685 12.479 18.5693V3.08691C11.8458 2.4546 11.3396 2.15005 10.8442 2.00586C10.4646 1.89536 10.0863 1.87733 9.65088 1.88379L9.19385 1.89551C8.90245 1.90438 8.57716 1.91903 8.21729 1.91504C7.3523 1.90507 6.49036 1.83496 5.63623 1.70898C4.90818 1.59833 4.18837 1.44436 3.46826 1.25098L3.3667 17.4443ZM13.1001 19.4756L12.9702 19.4355L12.7036 19.3516C11.1073 18.8421 9.44622 18.4675 7.79053 18.2637C6.2022 18.0649 4.61404 18.0218 3.08154 18.1553L3.08252 18.1562L2.85693 18.1807L2.74658 18.1924V17.8105L2.85693 0.811523V0.367188L2.98389 0.404297L3.24268 0.478516H3.24365C4.06446 0.718459 4.88951 0.898784 5.71826 1.02344H5.71729C6.54939 1.1471 7.38337 1.2128 8.22412 1.22266C8.56605 1.22658 8.88225 1.21789 9.17529 1.20898C9.87075 1.18581 10.4577 1.16457 11.0552 1.34668C11.6549 1.5295 12.2559 1.91365 12.9976 2.68066H12.9985L13.0698 2.75L13.1001 2.78027V19.4756Z" fill="white" stroke="white" stroke-width="0.2"/>
+              <path d="M1.01953 2.008L1.29199 2.06073L1.29102 2.06171L2.375 2.26776L2.46973 2.28534L2.45508 2.38104L2.375 2.88007L2.35938 2.9826L2.25781 2.96307L1.56641 2.83124L1.60547 19.5373L13.2314 19.8957L13.3311 19.8986L13.3291 19.9982L13.3154 20.5021L13.3135 20.6027L13.2129 20.5998L1.26562 20.2346H1.26465L1.04004 20.2248L0.944336 20.2209V19.8801L0.900391 2.40839V1.98456L1.01953 2.008Z" fill="white" stroke="white" stroke-width="0.2"/>
+              <path d="M16.8242 1.20898C17.1182 1.2179 17.4335 1.22659 17.7764 1.22266C18.617 1.2128 19.4537 1.14705 20.2822 1.02344C21.111 0.89877 21.9364 0.718495 22.7568 0.478516L23.0156 0.404297L23.1416 0.368164L23.1436 0.499023L23.1475 0.810547L23.2539 17.8105V18.1924L23.1436 18.1807L22.9189 18.1562V18.1572C21.3871 18.0236 19.7991 18.0648 18.2148 18.2637C16.5552 18.4674 14.8982 18.8421 13.2969 19.3516H13.2959L13.0303 19.4355L12.9004 19.4756V2.78027L12.9307 2.75098L13 2.68359C13.745 1.91473 14.3474 1.52969 14.9473 1.34668C15.5143 1.17369 16.071 1.1847 16.7207 1.20605V1.20508L16.8242 1.20898ZM22.5303 1.25195C21.8137 1.44508 21.0914 1.59943 20.3643 1.70996H20.3633C19.5093 1.8359 18.6489 1.90605 17.7832 1.91602C17.4234 1.92001 17.0979 1.90536 16.8057 1.89648C16.1658 1.87557 15.6624 1.8595 15.1562 2.00684C14.6609 2.15104 14.1542 2.45542 13.5205 3.08789V18.5693C15.0332 18.1093 16.5894 17.7672 18.1465 17.5771C19.6548 17.3904 21.1664 17.339 22.6318 17.4443L22.5303 1.25195Z" fill="white" stroke="white" stroke-width="0.2"/>
+              <path d="M25.1001 2.40839L25.0562 19.8801V20.2209L24.9595 20.2248L24.7349 20.2346H24.7339L12.7876 20.5998L12.687 20.6027L12.6841 20.5021L12.6714 19.9982L12.6685 19.8986L12.7681 19.8957L24.3931 19.5373L24.4321 2.83221L23.7427 2.96307L23.6411 2.9826L23.6245 2.88007L23.5464 2.38104L23.5308 2.28534L23.6265 2.26776L24.7075 2.06073L24.981 2.00702L25.1001 1.98456V2.40839Z" fill="white" stroke="white" stroke-width="0.2"/>
+            </svg>
+          </div>
+          <span>教材を申し込む</span>
+          <div class="arrow">
+            <svg width="18" height="5" viewBox="0 0 18 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 4.5H17L13 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="" class="module_button-icon _yellow">
+          <div class="icon">
+            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0.400391C13.8552 0.400455 15.5432 0.951521 16.7695 1.84668C17.9957 2.74172 18.7665 3.98597 18.7666 5.36621V6.91602H17.71V5.36621C17.7099 4.23698 17.0803 3.20358 16.0469 2.44922C15.0136 1.69511 13.5823 1.22467 12 1.22461C10.4174 1.22461 8.9855 1.69496 7.95215 2.44922C6.91874 3.20358 6.28917 4.23698 6.28906 5.36621V6.91602H5.2334V5.36621C5.2335 3.98597 6.00434 2.74172 7.23047 1.84668C8.4568 0.951651 10.1448 0.400391 12 0.400391Z" fill="white" stroke="white" stroke-width="0.2"/>
+              <path d="M11.9998 11.9839C10.7036 11.9839 9.65503 13.015 9.65503 14.2817C9.65503 14.95 9.95463 15.5802 10.4692 16.0194V17.4515C10.4692 18.279 11.1596 18.9473 11.9998 18.9473C12.84 18.9473 13.5303 18.2726 13.5303 17.4515V16.0194C14.0449 15.5865 14.3445 14.95 14.3445 14.2817C14.3445 13.015 13.2894 11.9839 11.9932 11.9839H11.9998ZM12.84 15.4529L12.6511 15.5802V17.4452C12.6511 17.7952 12.358 18.0817 11.9998 18.0817C11.6415 18.0817 11.3484 17.7952 11.3484 17.4452V15.5802L11.1596 15.4529C10.7688 15.1855 10.5343 14.7463 10.5343 14.2817C10.5343 13.4924 11.1921 12.8495 11.9998 12.8495C12.8074 12.8495 13.4652 13.4924 13.4652 14.2817C13.4652 14.7463 13.2307 15.1855 12.84 15.4529Z" fill="white"/>
+              <path d="M5.27148 9.56689C5.66973 9.56689 5.99707 9.8831 5.99707 10.2778C5.99692 10.6724 5.66964 10.9888 5.27148 10.9888C4.87345 10.9886 4.54703 10.6724 4.54688 10.2778C4.54688 9.88318 4.87336 9.56703 5.27148 9.56689Z" fill="white" stroke="white" stroke-width="0.2"/>
+              <path d="M5.27148 19.9805C5.66973 19.9805 5.99707 20.2967 5.99707 20.6914C5.99692 21.086 5.66964 21.4023 5.27148 21.4023C4.87345 21.4022 4.54703 21.0859 4.54688 20.6914C4.54688 20.2968 4.87336 19.9806 5.27148 19.9805Z" fill="white" stroke="white" stroke-width="0.2"/>
+              <path d="M18.7278 19.9805C19.1262 19.9805 19.4534 20.2965 19.4534 20.6914C19.4532 21.0861 19.1261 21.4023 18.7278 21.4023C18.3296 21.4022 18.0033 21.086 18.0032 20.6914C18.0032 20.2966 18.3295 19.9806 18.7278 19.9805Z" fill="white" stroke="white" stroke-width="0.2"/>
+              <path d="M18.7278 9.56689C19.1262 9.56689 19.4534 9.88297 19.4534 10.2778C19.4532 10.6726 19.1261 10.9888 18.7278 10.9888C18.3296 10.9886 18.0033 10.6725 18.0032 10.2778C18.0032 9.88306 18.3295 9.56703 18.7278 9.56689Z" fill="white" stroke="white" stroke-width="0.2"/>
+              <rect x="0.5" y="7.31592" width="23" height="16.6842" rx="0.5" stroke="white"/>
+            </svg>
+          </div>
+          <span>会員マイページ</span>
+          <div class="arrow">
+            <svg width="18" height="5" viewBox="0 0 18 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 4.5H17L13 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="" class="module_button-icon _blue">
+          <div class="icon">
+            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 1.25C11.5781 1.25 11.2031 1.39062 10.875 1.625L8.29688 3.5H15.6562L13.125 1.625C12.7969 1.39062 12.375 1.25 12 1.25ZM5.625 3.5H7.07812L10.4062 1.01562C10.875 0.6875 11.3906 0.5 12 0.5C12.5625 0.5 13.0781 0.6875 13.5469 1.01562L16.9219 3.5H18.375C19.7812 3.5 21 4.71875 21 6.125V6.54688L22.7812 7.85938C23.5312 8.42188 24 9.3125 24 10.2969V21.5C24 23.1875 22.6406 24.5 21 24.5H3C1.3125 24.5 0 23.1875 0 21.5V10.2969C0 9.3125 0.421875 8.42188 1.17188 7.85938L3 6.54688V6.125C3 4.71875 4.17188 3.5 5.625 3.5ZM21 10.5781L20.25 11.1875V6.125C20.25 5.09375 19.4062 4.25 18.375 4.25H5.625C4.54688 4.25 3.75 5.09375 3.75 6.125V11.1875L3 10.5781V7.48438L1.64062 8.46875C1.07812 8.89062 0.75 9.54688 0.75 10.2969V10.6719L0.796875 10.7188L10.875 19.0156C11.2031 19.25 11.5781 19.3906 12 19.3906C12.375 19.3906 12.75 19.25 13.0781 19.0156L23.1562 10.7188L23.25 10.6719V10.2969C23.25 9.54688 22.875 8.89062 22.3125 8.46875L21 7.48438V10.5781ZM0.75 21.5C0.75 22.7656 1.73438 23.75 3 23.75H21C22.2188 23.75 23.25 22.7656 23.25 21.5V11.6562L13.5469 19.5781C13.125 19.9531 12.5625 20.1406 12 20.1406C11.3906 20.1406 10.875 19.9531 10.4062 19.5781L0.75 11.6562V21.5ZM7.875 8H16.125C16.3125 8 16.5 8.1875 16.5 8.375C16.5 8.60938 16.3125 8.75 16.125 8.75H7.875C7.64062 8.75 7.5 8.60938 7.5 8.375C7.5 8.1875 7.64062 8 7.875 8ZM7.875 11.75H16.125C16.3125 11.75 16.5 11.9375 16.5 12.125C16.5 12.3594 16.3125 12.5 16.125 12.5H7.875C7.64062 12.5 7.5 12.3594 7.5 12.125C7.5 11.9375 7.64062 11.75 7.875 11.75Z" fill="white"/>
+            </svg>
+          </div>
+          <span>お問い合わせ</span>
+          <div class="arrow">
+            <svg width="18" height="5" viewBox="0 0 18 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 4.5H17L13 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="gf_information">
     <div class="global_inner">
-      <p class="gf_logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/common/logo.webp" alt="<?php bloginfo('name'); ?>"></a></p>
-      <address>
-        <p class="gf_address">〒000-0000<br>東京都テスト区テスト町1-1-1</p>
-        <p class="gf_tel">TEL:<a href="tel:00-0000-0000">00-0000-0000</a></p>
+      <div class="logo">
+        <p class="gf_logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/common/logo.webp" alt="<?php bloginfo('name'); ?>"></a></p>
+        <div class="sns">
+          <ul class="list">
+            <li>
+              <a href="" target="_blank">
+                <span>協会公式SNS</span>
+                <div class="icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="28" height="28" rx="14" fill="#3C6FAC"/>
+                    <path d="M15.3605 23V14.792H18.0116L18.4302 11.624H15.3605V9.608C15.3605 8.672 15.6395 8.024 16.8953 8.024H18.5V5.144C18.2209 5.072 17.2442 5 16.1279 5C13.7558 5 12.1512 6.512 12.1512 9.248V11.624H9.5V14.792H12.1512V23H15.3605Z" fill="white"/>
+                  </svg>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <address class="address">
+        <div class="module_address-01">
+          <div class="wrap">
+            <div class="inner">
+              <div class="title">法人名</div>
+              <div class="text">NPO法人 日本スパ・ウエルネス協会</div>
+            </div>
+          </div>
+          <div class="wrap">
+            <div class="inner">
+              <div class="title">事務局</div>
+              <div class="text">〒171-0014 東京都豊島区池袋2-23-3 1階<br>
+              TEL:<a href="tel:0359600332">03-5960-0332</a><br>
+              FAX:03-3988-8227</div>
+            </div>
+          </div>
+        </div>
       </address>
     </div>
   </div>
-  <p id="js_gf_pageTop" class="gf_pageTop"><a href="#"><span>ページトップへ戻る</span></a></p>
-  <p class="gf_copyright"><span>&copy; 2025 Codia Corporation.</span></p>
+  <div class="gf_copyright">
+    <div class="global_inner"><span>&copy; Japan SPA Wellness Association.</span></div>
+  </div>
 </footer>

@@ -11,12 +11,12 @@
 // 変数
 // ==========================================================================
 // プライマリーカラー
-$color-primary: #00b7f1;
+$color-primary: #164073;
 // セカンダリーカラー
 $color-secondary: #fff;
 $color-tertiary: #e3f2fd;
 // アクセントカラー
-$color-accent: #dd7c23;
+$color-accent: #0696B1;
 //$color-accent-yellow: #bd9620;
 //$color-accent-purple: #a73073;
 // グレー
@@ -46,7 +46,7 @@ $transition-duration: 0.3s;
 //$transition-timing-function: ease-in;
 // ヘッダー高さ
 $header_height-SP: 60px;
-$header_height-PC: 120px;
+$header_height-PC: 110px;
 
 // 既存のカスタムブロックのclassName一覧（除外用）
 $excluded-classes: (
@@ -83,7 +83,7 @@ $imageDir: '/wp/wp-content/themes/codiawp_block/images/';
 // ==========================================================================
 // 日本語サンセリフ体
 @mixin font_sansSerif-ja($weight: 400) {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
   font-weight: $weight;
 }
 // 日本語セリフ体
@@ -93,7 +93,7 @@ $imageDir: '/wp/wp-content/themes/codiawp_block/images/';
 }
 // 英語サンセリフ体
 @mixin font_sansSerif-en($weight: 400) {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Marcellus', sans-serif;
   font-weight: $weight;
 }
 // 英語セリフ体
@@ -212,7 +212,7 @@ body {
   }
 }
 
-@mixin hover-opacity($opacity: 0.5) {
+@mixin hover-opacity($opacity: 0.7) {
   transition: opacity $transition-duration;
   @include hover {
     opacity: $opacity;
@@ -237,6 +237,23 @@ body {
 @mixin icon-chevron-down {
   content: '\f078';
 }
+
+@mixin icon-arrow {
+  content: '\f061';
+}
+
+@mixin icon-star {
+  content: "";
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%229%22%20viewBox%3D%220%200%208%209%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M4%200.5L2.9176%203.4184L0%204.496L2.9176%205.5816L4%208.5L5.0752%205.5816L8%204.496L5.0752%203.4184L4%200.5Z%22%20fill%3D%22%23164073%22%2F%3E%3C%2Fsvg%3E');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  width: 8px;
+  height: 9px;
+}
+
+
 
 // ==========================================================
 // clearFix定義

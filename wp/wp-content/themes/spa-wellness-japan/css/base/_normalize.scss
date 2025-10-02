@@ -84,9 +84,11 @@ body {
   z-index: 0;
   background: $color-secondary;
   @include font_sansSerif-ja();
-  line-height: 1.8;
   font-size: 1.6rem;
-  //letter-spacing: .05em;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.8px;
   color: $color-text;
   word-wrap: break-word;
   overflow-wrap: break-word;
