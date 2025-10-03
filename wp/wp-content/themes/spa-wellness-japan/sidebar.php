@@ -4,13 +4,22 @@
       <?php while(have_rows('common-menu-01', 'option')): the_row(); ?>
         <?php
         $title01 = get_sub_field('title-01');
+        $en01 = get_sub_field('en-01');
         $url01 = get_sub_field('url-01');
         $target01 = get_sub_field('target-01');
         $select01 = get_sub_field('select-01');
         ?>
         <?php if( $select01 ): //3階層目あり ?>
           <li>
-            <a class="lnl_title mm_title" href="<?php echo $url01; ?>" <?php if( $target01 ): ?>target="_blank"<?php endif; //外部リンク ?>><?php echo $title01; ?></a>
+            <a class="lnl_title mm_title" href="<?php echo $url01; ?>" <?php if( $target01 ): ?>target="_blank"<?php endif; //外部リンク ?>>
+              <span><?php echo $title01; ?></span>
+              <span class="en"><?php echo $en01; ?></span>
+              <div class="icon">
+                <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+                <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+                <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+              </div>
+            </a>
             <div class="lnl_wrapper mm_wrapper-01">
               <div class="lnl_inner mm_inner-01">
                 <ul>
@@ -25,7 +34,7 @@
                       <?php if( $select02 ): //4階層目あり ?>
                         <li>
                           <button class="lnl_button mm_button-01" type="button"><span>開閉</span></button>
-                          <a class="lnl_title mm_title-01" href="<?php echo $url02; ?>" <?php if( $target02 ): ?>target="_blank"<?php endif; //外部リンク ?>><?php echo $title02; ?></a>
+                          <a class="lnl_title mm_title-01" href="<?php echo $url02; ?>" <?php if( $target02 ): ?>target="_blank"<?php endif; //外部リンク ?>><span><?php echo $title02; ?></span></a>
                           <div class="lnl_wrapper mm_wrapper-02">
                             <div class="lnl_inner mm_inner-02">
                               <ul>
@@ -36,7 +45,7 @@
                                     $url03 = get_sub_field('url-03');
                                     $target03 = get_sub_field('target-03');
                                     ?>
-                                    <li><a class="lnl_title mm_title-02" href="<?php echo $url03; ?>" <?php if( $target03 ): ?>target="_blank"<?php endif; //外部リンク ?>><?php echo $title03; ?></a></li>
+                                    <li><a class="lnl_title mm_title-02" href="<?php echo $url03; ?>" <?php if( $target03 ): ?>target="_blank"<?php endif; //外部リンク ?>><span><?php echo $title03; ?></span></a></li>
                                   <?php endwhile; ?>
                                 <?php endif; //4階層目出力終了 ?>
                               </ul>
@@ -44,7 +53,7 @@
                           </div>
                         </li>
                       <?php else: //4階層目なし ?>
-                        <li><a class="lnl_title mm_title-01" href="<?php echo $url02; ?>" <?php if( $target02 ): ?>target="_blank"<?php endif; //外部リンク ?>><?php echo $title02; ?></a></li>
+                        <li><a class="lnl_title mm_title-01" href="<?php echo $url02; ?>" <?php if( $target02 ): ?>target="_blank"<?php endif; //外部リンク ?>><span><?php echo $title02; ?></span></a></li>
                       <?php endif; //4階層目分岐終了 ?>
                     <?php endwhile; ?>
                   <?php endif; //3階層目出力終了 ?>

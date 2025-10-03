@@ -119,6 +119,17 @@ $postTopId = get_option( 'page_for_posts' );
     <div class="global_inner">
       <div class="gm_box">
         <h1 class="gm_title"><span><?php echo $title; ?></span></h1>
+        <?php if($en): ?>
+          <div class="gm_subTitle">
+            <div class="icon _left">
+              <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+            </div>
+            <span><?php echo $en; ?></span>
+            <div class="icon _right">
+              <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+            </div>
+          </div>
+        <?php endif; ?>
       </div>
       <?php if($img): ?>
         <div class="gm_background">
@@ -128,4 +139,3 @@ $postTopId = get_option( 'page_for_posts' );
     </div><!-- /global_inner -->
   </div><!-- /global_mainVisual -->
 <?php endif; //分岐終了 ?>
-<?php get_template_part( 'breadCrumb' ); ?>

@@ -176,6 +176,6 @@
     </div>
   </div>
   <div class="gf_copyright">
-    <div class="global_inner"><span>&copy; Japan SPA Wellness Association.</span></div>
+    <div class="global_inner"><span>&copy; Japan SPA Wellness Association.</span><div class="menu"><a href="">プライバシーポリシー</a></div></div>
   </div>
 </footer>

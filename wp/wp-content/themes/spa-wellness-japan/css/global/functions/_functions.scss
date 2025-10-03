@@ -27,7 +27,7 @@ $color-gray-border-03: #eeeeee;
 $color-gray-background: #f8f8f8;
 // テキストカラー
 $color-text: #333;
-$color-link: #008ddc;
+$color-link: #3C6FAC;
 // エラーカラー
 $color-error-text: #e53935;
 $color-error-border: #e53935;
@@ -37,7 +37,7 @@ $width-base: 1160px;
 $width-base-02: 1024px;
 $width-content: 1000px;
 $width-main: 860px;
-$width-side: 260px;
+$width-side: 240px;
 // ベース余白
 $padding-SP: 20px;
 $padding-TB: 60px;
@@ -77,7 +77,7 @@ $wp-block-list-exclude: ''; // `:not(.class1):not(.class2)...` の形式を動�
 // ==========================================================================
 // 画像ディレクトリurl('#{$imageDir}common/logo-01.svg')
 // ==========================================================================
-$imageDir: '/wp/wp-content/themes/codiawp_block/images/';
+$imageDir: '/wp/wp-content/themes/spa-wellness-japan/images/';
 // ==========================================================================
 // フォント
 // ==========================================================================
@@ -559,15 +559,24 @@ body {
   div.wp-block-group.has-background,
   div.wp-block-column.has-background,
   p.has-background {
-    padding: 32px;
+    padding: 30px;
     @include breakPoint_over-PC {
-      padding: 40px 32px;
+      padding: 40px;
     }
   }
   div.wp-block-group.has-gray-background-color,
   div.wp-block-column.has-gray-background-color,
   p.has-gray-background-color {
     background-color: $color-gray-background;
+  }
+  div.wp-block-group.has-border-background-color,
+  div.wp-block-column.has-border-background-color,
+  p.has-border-background-color {
+    background-color: transparent !important;
+    border-radius: 5px;
+    border: 1px solid $color-primary;
+    outline: 1px solid #BCD4EC;
+    outline-offset: -11px;
   }
 
   mark.has-inline-color.has-gray-color {

@@ -1,4 +1,7 @@
     </div><!-- /global_wrapper -->
+    <?php if (!is_front_page() && !is_home()) : ?>
+      <?php get_template_part( 'breadCrumb' ); ?>
+    <?php endif; ?>
     <?php include get_stylesheet_directory() . '/template-parts/_footer.php'; ?>
     <?php wp_footer(); ?>
     <?php

@@ -13,7 +13,7 @@ class BreadcrumbTrail
   public function __construct()
   {
     // トップページへのリンクを常に最初に追加
-    $this->addItem('TOP', home_url('/'));
+    $this->addItem('<i class="fa-thin fa-house-chimney"></i>HOME', home_url('/'));
   }
 
   public function addItem($name, $url = null)
@@ -35,10 +35,10 @@ class BreadcrumbTrail
 
       if ($item['url']) {
         $html .= '<a itemscope itemtype="https://schema.org/Thing" itemprop="item" href="' . esc_url($item['url']) . '">';
-        $html .= '<span itemprop="name">' . esc_html($item['name']) . '</span>';
+        $html .= '<span itemprop="name">' . wp_kses_post($item['name']) . '</span>';
         $html .= '</a>';
       } else {
-        $html .= '<span itemprop="name">' . esc_html($item['name']) . '</span>';
+        $html .= '<span itemprop="name">' . wp_kses_post($item['name']) . '</span>';
       }
 
       $html .= '<meta itemprop="position" content="' . $item['position'] . '" />';

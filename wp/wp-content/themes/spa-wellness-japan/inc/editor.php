@@ -143,6 +143,11 @@ function add_custom_color_palette()
 {
   add_theme_support('editor-color-palette', array(
     array(
+      'name'  => '枠線',
+      'slug'  => 'border',
+      'color' => '#164073',
+    ),
+    array(
       'name' => 'グレー',
       'slug' => 'gray',
       'color' => '#f8f8f8',

@@ -694,10 +694,8 @@
 // サイト共通ラッパー
 // ==========================================================================
 .global_wrapper {
-  padding-top: $header_height-SP;
   overflow: hidden;
   @include breakPoint_over-PC {
-    padding-top: $header_height-PC;
   }
 }
 // ==========================================================================
@@ -795,11 +793,15 @@
 .global_mainVisual {
   position: relative;
   overflow: hidden;
-  height: 200px;
   color: $color-secondary;
   transition: height $transition-duration;
+  background-image: url('#{$imageDir}common/pagetitle_sp.webp');
+  background-size: cover;
+  margin-bottom: 40px;
   @include breakPoint_over-PC {
-    height: 300px;
+    min-height: 300px;
+    background-image: url('#{$imageDir}common/pagetitle.webp');
+    margin-bottom: 80px;
   }
   .global_inner {
     display: flex;
@@ -807,6 +809,10 @@
     align-items: center;
     position: static;
     height: inherit;
+    min-height: 200px;
+    @include breakPoint_over-PC {
+      min-height: 300px;
+    }
   }
   .gm_background {
     position: absolute;
@@ -828,10 +834,90 @@
       background-color: rgba($color-primary, 0.2);
     }
   }
-  .gm_title {
-    font-size: 26px;
-    font-weight: 700;
+  .gm_box{
+    color: $color-primary;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0;
+    @include breakPoint_over-PC {
+      gap: 20px;
+      padding: 40px 0;
+    }
+  }
+  .gm_title {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 33.6px */
+    letter-spacing: 2.8px;
+    background: linear-gradient(90deg, var(--Color-Foreground-blue--01, #164073) 0%, var(--Color-Foreground-blue--02, #3C6FAC) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @include breakPoint_over-PC {
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 4px;
+    }
+  }
+  .gm_subTitle{
+    font-family: Marcellus;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.3; /* 16px */
+    letter-spacing: 0.8px;
+    display: grid;
+    grid-template-columns: 21px auto 21px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    color: #3C6FAC;
+    @include breakPoint_over-PC{
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 30px; /* 150% */
+      letter-spacing: 1px;
+      grid-template-columns: 26px auto 26px;
+    }
+    .icon{
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      &._left{
+        &::after{
+          content: "";
+          width: 10px;
+          height: 1px;
+          background-color: #3C6FAC;
+          @include breakPoint_over-PC {
+            width: 15px;
+          }
+        }
+      }
+      &._right{
+        &::before{
+          content: "";
+          width: 10px;
+          height: 1px;
+          background-color: #3C6FAC;
+          @include breakPoint_over-PC {
+            width: 15px;
+          }
+        }
+      }
+      svg{
+        path{
+          fill: #3C6FAC;
+        }
+      }
+    }
   }
 }
 // ==========================================================================
@@ -849,11 +935,6 @@
     }
     .module_breadCrumb {
       body:not(.home) & {
-        margin-top: 15px;
-        margin-bottom: 50px;
-        @include breakPoint_over-PC {
-          margin-bottom: 70px;
-        }
       }
     }
     > .global_inner,
@@ -877,7 +958,7 @@
     }
   }
   .gc_sub {
-    margin-top: 84px;
+    margin-top: 60px;
     @include breakPoint_over-PC {
       margin-top: 0;
       width: #{$width-side};
@@ -925,8 +1006,7 @@
     @include breakPoint_over-PC {
       column-count: 3;
       column-gap: 60px;
-      column-span: all;
-      display: inline-block;
+      display: block; 
       margin: 0;
     }
     ///////////// 共通
@@ -935,7 +1015,8 @@
       [class*='gfl_title'] {
         @include breakPoint_over-PC {
           padding: 0;
-          width: auto;
+          width: 100%;
+          min-height: auto;
         }
         &::after {
           @include breakPoint_over-PC {
@@ -944,7 +1025,7 @@
         }
         &:hover {
           @include breakPoint_over-PC {
-            color: $color-link;
+            opacity: .7;
           }
         }
         &._open {
@@ -1009,12 +1090,26 @@
     ///////////// 階層別
     > li {
       @include breakPoint_over-PC {
+        break-inside: avoid;
+        -webkit-column-break-inside: avoid; /* Safari/Chrome 用の旧プロパティ */
+        -moz-column-break-inside: avoid;
+
       }
       & + li {
+        margin-bottom: 20px;
       }
       > .gfl_title {
         @include breakPoint_over-PC {
-          font-weight: 700;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          letter-spacing: 1.6px;
+        }
+        &::before {
+          @include breakPoint_over-PC {
+            content: none;
+          }
         }
       }
       ///////////// 3階層
@@ -1024,15 +1119,72 @@
         }
         > .gfl_inner {
           > ul {
+            @include breakPoint_over-PC {
+              display: grid;
+              gap: 10px;
+            }
             > li {
-              & + li {
+              @include breakPoint_over-PC {
+                border-bottom: none;
+              }
+              > .gfl_title {
                 @include breakPoint_over-PC {
-                  margin-top: 10px;
+                  font-size: 13px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: normal;
+                  letter-spacing: 0.65px;
+                  padding: 0 0 0 13px;
+                  min-height: auto;
+                }
+                &::before{
+                  @include breakPoint_over-PC {
+                    @include icon-star;
+                    position: absolute;
+                    top: 5px;
+                    left: 0;
+                  }
                 }
               }
               > .gfl_wrapper {
                 @include breakPoint_over-PC {
-                  display: none; ///////////// 4階層は非表示
+                }
+                > .gfl_inner {
+                  @include breakPoint_over-PC {
+                    padding: 10px 0 0 14px;
+                  }
+                  > ul {
+                    @include breakPoint_over-PC {
+                      display: grid;
+                      gap: 10px;
+                    }
+                    > li {
+                      border-bottom: none;
+                      > .gfl_title {
+                        @include breakPoint_over-PC {
+                          font-size: 13px;
+                          font-style: normal;
+                          font-weight: 400;
+                          line-height: normal;
+                          letter-spacing: 0.65px;
+                          min-height: auto;
+                          background-color: transparent;
+                          padding: 0 0 0 12px;
+                        }
+                        &::before{
+                          @include breakPoint_over-PC {
+                            content: "";
+                            width: 7px;
+                            height: 1px;
+                            background-color: $color-primary;
+                            position: absolute;
+                            top: 9px;
+                            left: 0;
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -1049,7 +1201,8 @@
   }
   .gf_links-02 {
     @include breakPoint_over-PC {
-      display: block;
+      display: grid;
+      gap: 20px;
     }
     li {
       @include breakPoint_over-PC {
@@ -1059,16 +1212,17 @@
       a {
         @include breakPoint_over-PC {
           padding: 0;
-          width: auto;
-        }
-        &::after {
-          @include breakPoint_over-PC {
-            content: none;
-          }
+          min-height: auto;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          letter-spacing: 0.7px;
+          transition: $transition-duration;
         }
         &:hover {
           @include breakPoint_over-PC {
-            color: $color-link;
+            opacity: .7;
           }
         }
         span {
@@ -1166,6 +1320,29 @@
       text-align: left;
       min-height: 58px;
     }
+    .global_inner{
+      @include breakPoint_over-PC{
+        display: flex;
+      }
+    }
+    .menu{
+      display: none;
+      @include breakPoint_over-PC{
+        display: block;
+        margin-left: auto;
+      }
+      a{
+        display: inline-block;
+        text-decoration: none;
+        color: $color-secondary;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.6px;
+        @include hover-opacity();
+      }
+    }
   }
   .gf_pageTop {
     position: fixed;
@@ -1215,20 +1392,61 @@
       }
       ///////////// 2階層目
       > .lnl_title {
+        display: flex;
+        align-items: center;
         justify-content: center;
-        padding: 56px 16px;
-        background-color: $color-primary;
-        font-weight: 700;
-        color: $color-secondary;
+        flex-direction: column;
         text-align: center;
-        font-size: 22px;
+        color: $color-secondary;
+        padding: 30px 15px 20px;
+        background-color: #3C6FAC;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 100%; /* 16px */
+        letter-spacing: 1.6px;
+        transition: $transition-duration;
+        @include breakPoint_over-PC {
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 100%; /* 18px */
+          letter-spacing: 1.8px;
+        }
+        &:hover{
+          opacity: .7;
+        }
         body:not(.page) & {
           @include breakPoint_over-PC {
             pointer-events: none;
           }
         }
-        &::after {
+        &::before{
           content: none;
+        }
+        .en{
+          text-align: center;
+          font-family: Marcellus;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          letter-spacing: 0.6px;
+          margin-top: 5px;
+          @include breakPoint_over-PC {
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 0.6px;
+            margin-top: 10px;
+          }
+        }
+        .icon{
+          margin-top: 10px;
+          display: flex;
+          justify-content: center;
+          gap: 3px;
         }
       }
       ///////////// 2階層目
@@ -1240,18 +1458,14 @@
         }
         > .lnl_inner {
           > ul {
-            border-top: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px 0;
-            margin-top: 10px;
+            border-left: 1px solid #3C6FAC;
+            border-right: 1px solid #3C6FAC;
             ///////////// 3階層目
             ///////////// 3階層以降に影響あり
-            li {
-              border-bottom: none;
-              .lnl_button {
+            > li {
+              border-bottom: 1px solid #3C6FAC;
+              > .lnl_button {
                 transition: background-color $transition-duration;
-                background-color: $color-gray-border-02;
                 width: 44px;
                 &::before,
                 &::after {
@@ -1261,12 +1475,14 @@
                   left: calc(50% - 8px);
                 }
                 &:hover {
-                  @include breakPoint_over-PC {
-                    background-color: #ccc;
-                  }
+                  background-color: #F6F7FB;
                 }
                 &._open {
-                  background-color: #ccc;
+                  background-color: #F6F7FB;
+                  & + .lnl_title {
+                    background-color: #F6F7FB;
+                    color: $color-primary;
+                  }
                 }
                 & + .lnl_title {
                   &::after {
@@ -1278,45 +1494,73 @@
                   width: calc(100% - 44px);
                 }
               }
-              .lnl_title {
-                background-color: $color-gray-border-02;
-                padding-right: 44px;
+              > .lnl_title {
+                min-height: 60px;
+                padding: 15px 15px 15px 28px;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                letter-spacing: 0.65px;
+                @include breakPoint_over-PC {
+                  font-size: 14px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: normal;
+                  letter-spacing: 0.7px;
+                }
                 &._current {
-                  font-weight: 700;
+                  background-color: #F6F7FB;
+                  color: $color-primary;
                   &::after {
                   }
                 }
-                &::before {
+                span{
+                  position: relative;
+                  display: inline-block;
+                  &::before {
+                    @include icon-star;
+                    position: absolute;
+                    top: 6px;
+                    left: -13px;
+                  }
                 }
                 &::after {
-                  color: $color-primary;
-                  font-size: 20px;
-                  right: 16px;
+                  content: none;
                 }
                 &:hover {
+                  background-color: #F6F7FB;
                   color: $color-primary;
                 }
               }
               ///////////// 3階層以降に影響あり
               ///////////// 4階層目
               .lnl_wrapper {
-                margin: 8px auto;
                 .lnl_inner {
+                  padding: 0;
                   ul {
-                    border-top: none;
                     li {
                       .lnl_title {
-                        background-color: $color-secondary;
-                        padding: 10px 10px 10px 44px;
-                        font-size: 15px;
+                        background-color: transparent;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                        letter-spacing: 0.65px;
+                        padding: 10px 15px;
                         &._current {
+                          background-color: #F6F7FB;
+                          color: $color-primary;
+                        }
+                        &::before{
+                          content: none;
                         }
                         &::after {
-                          right: auto;
-                          left: 24px;
-                          font-size: 16px;
+                          content: none;
                         }
                         &:hover {
+                          background-color: #F6F7FB;
+                          color: $color-primary;
                         }
                       }
                     }

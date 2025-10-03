@@ -168,31 +168,12 @@ body.admin-bar {
       transform: none;
     }
   }
-  .global_header {
-    @include breakPoint_over-WP01 {
-      position: fixed;
-      transform: translateY($heightSP);
-    }
-    @include breakPoint_over-WP02 {
-      transform: translateY($heightPC);
-    }
-  }
-  .global_navigation {
-    @include breakPoint_over-WP01 {
-      transform: translateY($heightSP);
-    }
-    @include breakPoint_over-WP02 {
-      transform: translateY($heightPC);
-    }
-  }
-  &._open-menu {
-    .global_navigation {
-      @include breakPoint_over-WP01 {
-        padding-bottom: 70px + $heightSP;
-      }
-      @include breakPoint_over-WP02 {
-        padding-bottom: 0;
-      }
-    }
-  }
+  // .headerNavigation {
+  //   @include breakPoint_over-WP01 {
+  //     transform: translateY($heightSP);
+  //   }
+  //   @include breakPoint_over-WP02 {
+  //     transform: translateY($heightPC);
+  //   }
+  // }
 }
