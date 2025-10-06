@@ -127,6 +127,7 @@ function replace_default_jquery() {
 add_action('wp_enqueue_scripts', 'replace_default_jquery');
 
 // JavaScript
+new EnqueueScript('scroll-hint-script', get_theme_file_uri('/js/scroll-hint.js'), [], null, true, 'defer');
 new EnqueueScript('swiper-script', get_theme_file_uri('/js/swiper-bundle.min.js'), [], null, true, 'defer');
 new EnqueueScript('modaal-script', get_theme_file_uri('/js/modaal.min.js'), [], '0.4.4', true, 'defer');
 new EnqueueScript('dualtab-script', get_theme_file_uri('/js/jquery.dualtab.js'), array('jquery'), null, true, 'defer');
@@ -142,6 +143,7 @@ new EnqueueScript('formidable-script', get_theme_file_uri('/js/form.js'), array(
 });
 // CSS
 new EnqueueStyle('css-style', get_stylesheet_uri(), [], null);
+new EnqueueStyle('scroll-hint-style', get_theme_file_uri('/css/scroll-hint.css'), [], null, 'all');
 new EnqueueStyle('swiper-style', get_theme_file_uri('/css/swiper-bundle.min.css'), [], null, 'all');
 new EnqueueStyle('modaal-style', get_theme_file_uri('/css/modaal.min.css'), [], '0.4.4', 'all');
 new EnqueueStyle('fontawesome-style', get_theme_file_uri('/css/all.min.css'), [], '6.7.2', 'all');

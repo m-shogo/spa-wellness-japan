@@ -635,6 +635,25 @@ window.addEventListener('resize', setVw);
   };
 
   // ==========================================================================
+  // table
+  // スクロールヒント
+  // ==========================================================================
+  const scrollHint = function () {
+    window.addEventListener('DOMContentLoaded', function () {
+      $('.wp-block-flexible-table-block-table').addClass('js-scrollable');
+      
+      new ScrollHint('.js-scrollable', {
+        //scrollHintIconAppendClass: 'scroll-hint-icon-green', // white-icon will appear
+        remainingTime: -1, //5000
+        i18n: {
+          scrollable: 'スクロールできます',
+        },
+      });
+    });
+  };
+
+
+  // ==========================================================================
   // 実行
   // ==========================================================================
   $('#global_header').floatingWidget();
@@ -652,4 +671,5 @@ window.addEventListener('resize', setVw);
   lightboxWrap();
   tab();
   archiveNavigation();
+  scrollHint();
 })(jQuery);

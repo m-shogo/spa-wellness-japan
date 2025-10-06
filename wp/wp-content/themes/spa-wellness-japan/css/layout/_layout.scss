@@ -264,7 +264,6 @@
           @include breakPoint_over-PC {
             display: flex;
             justify-content: space-between;
-            max-width: calc(#{$width-base} + 120px);
             margin: 0 auto;
           }
           > .gnl_title {
@@ -972,8 +971,9 @@
   position: relative;
   background-color: #F6F7FB;
   color: $color-text;
+  padding-bottom: 58px;
   @include breakPoint_over-PC {
-    padding-top: 80px;
+    padding: 80px 0 0;
   }
   a {
     text-decoration: none;
@@ -1890,4 +1890,17 @@
   width: 100% !important;
   height: auto !important;
   object-fit: contain !important; /* 必要に応じて cover → contain に変更 */
+}
+
+.global_banner{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @include breakPoint_over-PC {
+    display: none;
+  }
 }

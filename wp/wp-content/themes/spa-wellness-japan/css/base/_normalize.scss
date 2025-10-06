@@ -83,15 +83,7 @@ body {
   position: relative;
   z-index: 0;
   background: $color-secondary;
-  @include font_sansSerif-ja();
-  font-size: 1.6rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0.8px;
-  color: $color-text;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  @include globalfont-styles;
   @include breakPoint_over-PC {
     min-width: 1280px;
   }

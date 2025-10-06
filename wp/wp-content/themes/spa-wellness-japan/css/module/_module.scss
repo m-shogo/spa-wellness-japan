@@ -23,7 +23,7 @@
 .content_inner {
   @extend %inner;
   @include breakPoint_over-PC {
-    max-width: calc(#{$width-base} + #{$padding-TB * 2});
+    max-width: calc(#{$width-content} + #{$padding-TB * 2});
   }
 }
 // ==========================================================================
@@ -207,14 +207,12 @@ span.caption {
     font-weight: bold;
   }
   span[style*='underline'] {
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      transparent 65%,
-      rgba($color-primary, 0.4) 66%,
-      rgba($color-primary, 0.4) 100%
-    );
     text-decoration: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: rgba(#37CBE6, .4) !important;
+    text-decoration-thickness: 8px !important;
+    text-underline-offset: -4px !important;
+    text-decoration-skip-ink: none !important;
   }
 }
 // ==========================================================================
@@ -1006,6 +1004,10 @@ label {
               line-height: normal;
               letter-spacing: 0.7px;
               min-height: 50px;
+              padding: 15px;
+              &::after{
+                content: none;
+              }
             } // a
             .mm_button-01 {
               span {
@@ -1026,6 +1028,9 @@ label {
                       padding: 10px 15px;
                       min-height: 40px;
                       background-color: #EAEAEA;
+                      &::after{
+                        content: none;
+                      }
                     }
                     .mm_button-02 {
                       span {
@@ -1766,6 +1771,134 @@ label {
   }
   span{
 
+  }
+  .arrow{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    svg{
+      path{
+        transition: $transition-duration;
+      }
+    }
+  }
+}
+
+.module_button-icon2{
+  position: relative;
+  background-color: $color-accent;
+  padding: 10px 10px;
+  min-height: 58px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: $color-secondary;
+  text-decoration: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.7px;
+  transition: $transition-duration;
+  @include breakPoint_over-PC{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 1.6px;
+    min-height: 70px;
+  }
+  &:hover{
+    background-color: #D2EBF0;
+    color: $color-accent;
+    .icon{
+      svg{
+        path{
+          fill: $color-accent;
+        }
+      }
+    }
+    .arrow{
+      svg{
+        path{
+          stroke: $color-accent;
+        }
+      }
+    }
+  }
+  &._yellow{
+    background-color: #C49D09;
+    &:hover{
+      background-color: #FBEFC3;
+      color: #C49D09;
+      .icon{
+        svg{
+          path{
+            fill: #C49D09;
+          }
+          rect{
+            stroke: #C49D09;
+          }
+        }
+      }
+      .arrow{
+        svg{
+          path{
+            stroke: #C49D09;
+          }
+        }
+      }
+    }  
+  }
+  &._blue{
+    background-color: $color-primary;
+    &:hover{
+      background-color: #C9DCF2;
+      color: $color-primary;
+      .icon{
+        svg{
+          path{
+            fill: $color-primary;
+          }
+        }
+      }
+      .arrow{
+        svg{
+          path{
+            stroke: $color-primary;
+          }
+        }
+      }
+    }  
+  }
+  .title{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .icon{
+    display: flex;
+    svg{
+      height: 20px;
+      path,rect{
+        transition: $transition-duration;
+      }
+    }
+  }
+  span{
+
+  }
+  .en{
+    font-family: Marcellus;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-align: center;
   }
   .arrow{
     position: absolute;
