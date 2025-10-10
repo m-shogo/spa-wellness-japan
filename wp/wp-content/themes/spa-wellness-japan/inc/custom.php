@@ -11,29 +11,29 @@
 // ==========================================================================
 // カスタムポストの設定
 // ==========================================================================
-function add_custom_post()
-{
-  $args = array(
-    'label' => 'イベント',
-    'public' => true,
-    'publicly_queryable' => true,
-    'show_ui' => true,
-    'query_var' => true,
-    'capability_type' => 'post',
-    'hierarchical' => false,
-    'menu_position' => 5,
-    'has_archive' => true,
-    'rewrite' => array('with_front' => false),
-    'supports' => array(
-      'title',
-      'thumbnail',
-      'editor',
-      'revisions',
-    )
-  );
-  register_post_type('event', $args);
-}
-add_action('init', 'add_custom_post');
+// function add_custom_post()
+// {
+//   $args = array(
+//     'label' => 'イベント',
+//     'public' => true,
+//     'publicly_queryable' => true,
+//     'show_ui' => true,
+//     'query_var' => true,
+//     'capability_type' => 'post',
+//     'hierarchical' => false,
+//     'menu_position' => 5,
+//     'has_archive' => true,
+//     'rewrite' => array('with_front' => false),
+//     'supports' => array(
+//       'title',
+//       'thumbnail',
+//       'editor',
+//       'revisions',
+//     )
+//   );
+//   register_post_type('event', $args);
+// }
+// add_action('init', 'add_custom_post');
 
 // ==========================================================================
 // カスタムタクソノミーの設定

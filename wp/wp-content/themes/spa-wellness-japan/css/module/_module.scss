@@ -249,13 +249,17 @@ span.caption {
 [class^='module_button-'] {
   &,
   &[target='_blank'],
-  &[href$='.pdf'],
   &[href$='.doc'],
   &[href$='.docx'],
   &[href$='.docm'],
   &[href$='.xls'],
   &[href$='.xlsx'],
-  &[href$='.xlsm'] {
+  &[href$='.xlsm'],
+  &[href$='.png'],
+  &[href$='.jpg'],
+  &[href$='.jpeg'],
+  &[href$='.gif'],
+  &[href$='.webp'] {
     span {
       &::after {
         @include font-awesome();
@@ -280,7 +284,12 @@ span.caption {
   &[href$='.docm'],
   &[href$='.xls'],
   &[href$='.xlsx'],
-  &[href$='.xlsm'] {
+  &[href$='.xlsm'],
+  &[href$='.png'],
+  &[href$='.jpg'],
+  &[href$='.jpeg'],
+  &[href$='.gif'],
+  &[href$='.webp'] {
     span {
       &::after {
         @include icon-file;
@@ -1958,3 +1967,4 @@ label {
     }
   }
 }
+

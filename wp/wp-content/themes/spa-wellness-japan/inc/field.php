@@ -76,13 +76,13 @@ add_action('acf/init', function () {
     //   'capability' => 'edit_posts',
     //   'redirect'   => false
     // ));
-    acf_add_options_page(array(
-      'page_title' => 'ビジュアル設定', // 設定ページで表示される名前
-      'menu_title' => 'ビジュアル設定', // ナビに表示される名前
-      'menu_slug' => 'common_visual',
-      'capability' => 'edit_posts',
-      'redirect' => false
-    ));
+    // acf_add_options_page(array(
+    //   'page_title' => 'ビジュアル設定', // 設定ページで表示される名前
+    //   'menu_title' => 'ビジュアル設定', // ナビに表示される名前
+    //   'menu_slug' => 'common_visual',
+    //   'capability' => 'edit_posts',
+    //   'redirect' => false
+    // ));
     if (current_user_can('administrator')) {
       acf_add_options_page(array(
         'page_title' => 'タグ設定', // 設定ページで表示される名前
@@ -125,6 +125,16 @@ add_action('init', function () {
 add_action('acf/init', function () {
   if (function_exists('acf_register_block_type')) {
     acf_register_block_type(array(
+      'name'              => 'button',
+      'description'       => 'ボタンブロック',
+      'title'             => 'その他ボタン',
+      'render_template'   => get_template_directory() . '/acf/blocks/button.php',
+      'category'          => 'design',
+      'icon'              => 'button',
+      'keywords'          => array('button', 'ボタン', 'リンク'),
+    ));
+
+    acf_register_block_type(array(
       'name'              => 'accordion',
       'description'       => 'アコーディオンブロック',
       'title'             => 'アコーディオン',
@@ -134,29 +144,29 @@ add_action('acf/init', function () {
       'keywords'          => array('accordion', 'toggle'),
     ));
 
-    acf_register_block_type(array(
-      'name'              => 'in-page-link',
-      'title'             => 'ページ内リンク',
-      'description'       => 'ページ内リンクブロック',
-      'render_template'   => get_template_directory() . '/acf/blocks/inPageLink.php',
-      'category'          => 'layout',
-      'icon'              => 'admin-links',
-      'keywords'          => array('link', 'ページ内リンク', 'リンク'),
-    ));
+    // acf_register_block_type(array(
+    //   'name'              => 'in-page-link',
+    //   'title'             => 'ページ内リンク',
+    //   'description'       => 'ページ内リンクブロック',
+    //   'render_template'   => get_template_directory() . '/acf/blocks/inPageLink.php',
+    //   'category'          => 'layout',
+    //   'icon'              => 'admin-links',
+    //   'keywords'          => array('link', 'ページ内リンク', 'リンク'),
+    // ));
 
-    acf_register_block_type(array(
-      'name'              => 'navigation-large',
-      'title'             => 'ナビゲーション（大）',
-      'description'       => 'ナビゲーションブロック',
-      'render_template'   => get_template_directory() . '/acf/blocks/navigationLarge.php',
-      'category'          => 'layout',
-      'icon'              => 'admin-links',
-      'keywords'          => array('link', 'ナビゲーション', 'リンク'),
-    ));
+    // acf_register_block_type(array(
+    //   'name'              => 'navigation-large',
+    //   'title'             => 'ナビゲーション（大）',
+    //   'description'       => 'ナビゲーションブロック',
+    //   'render_template'   => get_template_directory() . '/acf/blocks/navigationLarge.php',
+    //   'category'          => 'layout',
+    //   'icon'              => 'admin-links',
+    //   'keywords'          => array('link', 'ナビゲーション', 'リンク'),
+    // ));
 
     acf_register_block_type(array(
       'name'              => 'navigation-small',
-      'title'             => 'ナビゲーション（小）',
+      'title'             => 'ナビゲーション',
       'description'       => 'ナビゲーションブロック',
       'render_template'   => get_template_directory() . '/acf/blocks/navigationSmall.php',
       'category'          => 'layout',
@@ -164,42 +174,42 @@ add_action('acf/init', function () {
       'keywords'          => array('link', 'ナビゲーション', 'リンク'),
     ));
 
-    acf_register_block_type([
-      'name'              => 'custom-post-list',
-      'title'             => '投稿の出力',
-      'description'       => '指定した条件の記事一覧を出力するブロック',
-      'render_template'   => get_template_directory() . '/acf/blocks/customPostList.php',
-      'category'          => 'formatting',
-      'icon'              => 'edit',
-      'keywords'          => array('記事', '投稿', 'タクソノミー', 'taxonomy', 'カテゴリー'),
-    ]);
+    // acf_register_block_type([
+    //   'name'              => 'custom-post-list',
+    //   'title'             => '投稿の出力',
+    //   'description'       => '指定した条件の記事一覧を出力するブロック',
+    //   'render_template'   => get_template_directory() . '/acf/blocks/customPostList.php',
+    //   'category'          => 'formatting',
+    //   'icon'              => 'edit',
+    //   'keywords'          => array('記事', '投稿', 'タクソノミー', 'taxonomy', 'カテゴリー'),
+    // ]);
 
-    acf_register_block_type([
-      'name' => 'tab-container',
-      'title' => 'タブブロック',
-      'render_template' => get_template_directory() . '/acf/blocks/tabContainer.php',
-      'mode' => 'preview',
-      'supports' => [
-        'jsx' => true,
-        'align' => false,
-        'innerBlocks' => true,
-      ],
-      'allowed_blocks' => [
-        'acf/tab-panel', // タブコンテンツブロックだけを許可
-      ],
-    ]);
+    // acf_register_block_type([
+    //   'name' => 'tab-container',
+    //   'title' => 'タブブロック',
+    //   'render_template' => get_template_directory() . '/acf/blocks/tabContainer.php',
+    //   'mode' => 'preview',
+    //   'supports' => [
+    //     'jsx' => true,
+    //     'align' => false,
+    //     'innerBlocks' => true,
+    //   ],
+    //   'allowed_blocks' => [
+    //     'acf/tab-panel', // タブコンテンツブロックだけを許可
+    //   ],
+    // ]);
 
-    acf_register_block_type([
-      'name' => 'tab-panel',
-      'title' => 'タブの中身',
-      'render_template' => get_template_directory() . '/acf/blocks/tabPanel.php',
-      'parent' => ['acf/tab-container'],
-      'supports' => [
-        'jsx' => true,
-        'align' => false,
-        'innerBlocks' => true,
-      ],
-    ]);
+    // acf_register_block_type([
+    //   'name' => 'tab-panel',
+    //   'title' => 'タブの中身',
+    //   'render_template' => get_template_directory() . '/acf/blocks/tabPanel.php',
+    //   'parent' => ['acf/tab-container'],
+    //   'supports' => [
+    //     'jsx' => true,
+    //     'align' => false,
+    //     'innerBlocks' => true,
+    //   ],
+    // ]);
   }
 });
 
@@ -380,28 +390,28 @@ function custom_allowed_block_types_all($allowed_block_types, $block_editor_cont
     'core/columns',               // カラム
     'core/column',                // カラム内
     'core/group',                 // グループ
-    //'core/more',                  // 続きを読む
+    //'core/more',                // 続きを読む
     'core/nextpage',              // ページ区切り
     'core/separator',             // 区切り線
     'core/spacer',                // スペーサー
-    // 'core/cover',             // カバーブロック
-    'core/media-text',        // メディアと文章
-    // 'core/page-break',        // 改ページ
-    // 'core/site-logo',         // サイトロゴ
-    // 'core/site-title',        // サイトタイトル
-    // 'core/site-tagline',      // キャッチフレーズ
-    // 'core/template-part',     // テンプレートパート
+    // 'core/cover',              // カバーブロック
+    'core/media-text',            // メディアと文章
+    // 'core/page-break',         // 改ページ
+    // 'core/site-logo',          // サイトロゴ
+    // 'core/site-title',         // サイトタイトル
+    // 'core/site-tagline',       // キャッチフレーズ
+    // 'core/template-part',      // テンプレートパート
 
     // ---------- ウィジェット ----------
     'core/html',                  // カスタムHTML
-    // 'core/shortcode',         // ショートコード
-    // 'core/latest-posts',      // 最新の投稿
+    // 'core/shortcode',          // ショートコード
+    // 'core/latest-posts',       // 最新の投稿
 
     // ---------- 埋め込み ----------
     'core/embed',                 // 埋め込み（すべてのプロバイダー）
-    // 'core/twitter',           // Twitter埋め込み（廃止予定）
-    // 'core/youtube',           // YouTube埋め込み
-    // 'core/facebook',          // Facebook埋め込み
+    // 'core/twitter',            // Twitter埋め込み（廃止予定）
+    // 'core/youtube',            // YouTube埋め込み
+    // 'core/facebook',           // Facebook埋め込み
 
     // ---------- 同期パターン ----------
     'core/block',                 // 同期パターン（再利用ブロック）
@@ -411,12 +421,13 @@ function custom_allowed_block_types_all($allowed_block_types, $block_editor_cont
 
     // ---------- ACF ----------
     'acf/accordion',              // ACF アコーディオン
-    'acf/in-page-link',           // ACF ページ内リンク
-    'acf/navigation-large',       // ACF ナビゲーション（大）
-    'acf/navigation-small',       // ACF ナビゲーション（小）
-    'acf/custom-post-list',       // ACF 投稿の出力
-    'acf/tab-container',          // ACF タブコンテナ（親）
-    'acf/tab-panel',            // ACF タブコンテンツ（子）
+    'acf/button',                 // ACF ボタン
+    // 'acf/in-page-link',           // ACF ページ内リンク
+    // 'acf/navigation-large',       // ACF ナビゲーション（大）
+    'acf/navigation-small',       // ACF ナビゲーション
+    // 'acf/custom-post-list',       // ACF 投稿の出力
+    // 'acf/tab-container',          // ACF タブコンテナ（親）
+    // 'acf/tab-panel',              // ACF タブコンテンツ（子）
     // ※ タブボタンはACFフィールドで実装するためブロックとしては不要
   );
 
