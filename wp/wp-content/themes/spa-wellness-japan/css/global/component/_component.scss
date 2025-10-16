@@ -68,8 +68,15 @@
 // ==========================================================================
 %label {
   display: inline-block;
-  border: 1px solid $color-primary;
-  padding: 0 0.5em;
+  border: 1px solid #BCD4EC;
+  padding: 2px 15px;
+  min-width: 74px;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  border-radius: 30px;
 }
 // ==========================================================================
 // ボタンコンポーネント

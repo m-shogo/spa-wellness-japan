@@ -33,7 +33,14 @@ function responsive_pagination($pages = '', $range = 4)
     echo '<ul class="module_pager-01" role="menubar" aria-label="Pagination">';
     if (is_paged()) {
       //先頭へ
-      echo '<li class="prev"><a href="' . get_pagenum_link(1) . '"></a></li>';
+      echo '<li class="prev">
+        <a href="' . get_pagenum_link(1) . '">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="8" viewBox="0 0 20 8" fill="none">
+            <path d="M19 7H1L6 1" stroke="#3C6FAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>前へ</span>
+        </a>
+      </li>';
       //1つ戻る
       //echo '<li class="prev"><a href="' . get_pagenum_link( $paged - 1 ) . '"><i class="fal fa-angle-left"></i></a></li>';
     }
@@ -47,7 +54,14 @@ function responsive_pagination($pages = '', $range = 4)
       //1つ進む
       //echo '<li class="next"><a href="' . get_pagenum_link( $paged + 1 ) . '"><i class="fal fa-angle-right"></i></a></li>';
       //最後尾へ
-      echo '<li class="next"><a href="' . get_pagenum_link($pages) . '"></a></li>';
+      echo '<li class="next">
+      <a href="' . get_pagenum_link($pages) . '">
+      <span>次へ</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="8" viewBox="0 0 20 8" fill="none">
+        <path d="M1 7H19L14 1" stroke="#3C6FAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      </a>
+      </li>';
     }
     echo '</ul>';
   }

@@ -22,7 +22,7 @@ if (is_front_page() || is_page()): ?>
         } ?>
         <a href="<?php echo $url; ?>" <?php if ($target): ?> target="_blank" <?php endif; ?>>
           <div class="head">
-            <p class="date"><time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y/m/d'); ?></time></p>
+            <p class="date"><time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y.m.d'); ?></time></p>
             <?php
             get_template_part('template-parts/_label-category', null, [
               'taxonomy' => '_cat',
@@ -61,7 +61,7 @@ if (is_front_page() || is_page()): ?>
           } ?>
           <a href="<?php echo $url; ?>" <?php if ($target): ?> target="_blank" <?php endif; ?>>
             <div class="head">
-              <p class="date"><time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y/m/d'); ?></time></p>
+              <p class="date"><time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y.m.d'); ?></time></p>
               <?php
               get_template_part('template-parts/_label-category', null, [
                 'taxonomy' => '_cat',

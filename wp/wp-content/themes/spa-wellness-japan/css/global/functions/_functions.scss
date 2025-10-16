@@ -1895,18 +1895,14 @@ body {
 @mixin wp-block-newsList-style {
   .module_newsList-01 {
     article {
-      border-bottom: 1px solid $color-gray-border;
-      &:first-child {
-        border-top: 1px solid $color-gray-border;
-      }
+      border-bottom: 1px solid #BCD4EC;
       a {
         display: block;
-        padding: 20px 0;
+        padding: 15px 0;
         color: $color-text;
         text-decoration: none;
         transition: $transition-duration;
         @include breakPoint_over-PC {
-          padding: 20px;
         }
         &::after {
           content: none;
@@ -1914,7 +1910,7 @@ body {
         &:hover {
           .body {
             .title {
-              color: $color-link;
+              text-decoration: underline;
             }
           }
         }
@@ -1963,23 +1959,37 @@ body {
       }
       .head {
         display: flex;
+        gap: 20px;
+        align-items: center;
         .date {
-          width: 100px;
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          letter-spacing: 0.65px;
         }
         .category {
           .label {
             @extend %label;
-            color: $color-primary;
-            &:not(:last-child) {
-              margin-right: 10px;
-            }
           }
         }
       }
       .body {
         margin-top: 10px;
         .title {
-          transition: color $transition-duration;
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 150%; /* 22.5px */
+          letter-spacing: 0.75px;
+          transition: $transition-duration;
+          @include breakPoint_over-PC {
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 30px; /* 200% */
+            letter-spacing: 0.75px;
+          }
         }
       }
     }

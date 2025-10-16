@@ -429,12 +429,20 @@ window.addEventListener('resize', setVw);
       .prev('li')
       .addClass('current_prev')
       .prev('li')
-      .addClass('current_prev2');
+      .addClass('current_prev2')
+      .prev('li')
+      .addClass('current_prev3')
+      .prev('li')
+      .addClass('current_prev4');
     $('.module_pager-01 li.current')
       .next('li')
       .addClass('current_next')
       .next('li')
-      .addClass('current_next2');
+      .addClass('current_next2')
+      .next('li')
+      .addClass('current_next3')
+      .next('li')
+      .addClass('current_next4');
   };
 
   // ==========================================================================

@@ -75,12 +75,12 @@ switch ($post_type) {
         }
         break;
 
-    case 'event':
+    case 'himawari':
         if ($query->have_posts()) {
             global $wp_query;
             $main_query = $wp_query;
             $wp_query = $query;
-            get_template_part('list', 'card');
+            get_template_part('list', 'news');
             $wp_query = $main_query;
         } else {
             echo '<p>該当する投稿はございません。</p>';

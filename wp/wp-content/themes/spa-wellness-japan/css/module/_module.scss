@@ -509,100 +509,154 @@ label {
 .module_pager-01 {
   display: flex;
   justify-content: center;
-  overflow-x: auto;
-  margin-top: 50px !important;
-  @include breakPoint_over-PC {
+  margin-top: 40px !important;
+  @include breakPoint_over-TB {
     margin-top: 80px !important;
   }
   li {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-    margin: 0 3px;
+    display: none;
     width: 40px;
     height: 40px;
+    margin: 0 5px;
+    @include breakPoint_over-PC {
+      margin: 0 10px;
+    }
     &.prev,
     &.next {
-      position: static !important;
+      display: block;
     }
     &.current_prev,
     &.current_next {
-      position: static;
-      @include breakPoint_original-min(375px) {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-      }
-      @include breakPoint_original-min(375px) {
-        position: static;
-      }
+      display: block;
     }
     &.current_prev2,
-    &.current_next2 {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-      @include breakPoint_over-PC {
-        position: static;
+    &.current_next2{
+      @include breakPoint_over-TB {
+        display: block;
+      }
+    }
+    &:nth-child(4).current_next2,&:nth-last-child(4).current_prev2{
+      display: block;
+    }
+    &:nth-child(5).current_next3,&:nth-last-child(5).current_prev3,
+    &:nth-child(6).current_next3,&:nth-last-child(6).current_prev3,
+    &:nth-child(6).current_next4,&:nth-last-child(6).current_prev4{
+      @include breakPoint_over-TB{
+        display: block;
       }
     }
     &.current {
-      position: static;
+      display: block;
     }
     a,
-    span {
+    > span {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      border: 1px solid $color-primary;
       width: inherit;
       height: inherit;
-      background-color: $color-secondary;
-      color: $color-primary;
+      overflow: hidden;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1em;
+      letter-spacing: 0.8px;
+      color: $color-secondary;
       text-decoration: none;
+      background-color: $color-secondary;
+      color: #3C6FAC;
       transition: $transition-duration;
+      border: 1px solid #3C6FAC;
+      border-radius: 50%;
+      &::before,
+      &::after {
+
+      }
+      &::after {
+
+      }
       &:hover,
-      &:focus,
+      &:focus {
+        background-color: #3C6FAC;
+        color: $color-secondary;
+        &::after {
+        }
+      }
       &.current {
-        border-color: $color-primary;
-        background-color: $color-primary;
+        pointer-events: none;
+        cursor: default;
+        background-color: #3C6FAC;
         color: $color-secondary;
       }
-      &.current {
-        cursor: default;
-        pointer-events: none;
-      }
-    }
+    } // a
     &.prev,
     &.next {
+      margin: 0;
+      width: auto;
       a {
+        display: flex;
+        align-items: center;
+        gap: 15px;
         border: none;
         background-color: transparent;
-        @include hover-opacity;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 27px */
+        letter-spacing: 0.9px;
+        color: #3C6FAC;
+        border-radius: 0;
         &::before {
-          @include font-awesome();
-          font-size: 26px;
-          color: $color-gray-text;
+        }
+        &:hover {
+          background-color: transparent;
+          opacity: .7;
         }
       }
-    }
+    } // &.prev, &.next
     &.prev {
-      a {
-        &::before {
-          content: '\f104';
+      margin-right: 20px;
+      @include breakPoint_over-TB {
+        margin-right: 40px;
+      }
+      &.current_prev{
+        pointer-events: none;
+        a{
+          color: #AAAAAA;
         }
       }
-    }
+      @include breakPoint_over-TB {
+      }
+      a {
+        @include breakPoint_over-TB {
+        }
+        &::before {
+        }
+      }
+    } // &.prev
     &.next {
-      a {
-        &::before {
-          content: '\f105';
+      margin-left: 20px;
+      @include breakPoint_over-TB {
+        margin-left: 40px;
+      }
+      &.current_next{
+        pointer-events: none;
+        a{
+          color: #AAAAAA;
         }
       }
-    }
-  }
-}
+      @include breakPoint_over-TB {
+      }
+      a {
+        @include breakPoint_over-TB {
+        }
+        &::before {
+        }
+      }
+    } // &.next
+  } // li
+} // .module_pager-01
 // 詳細ページ用
 .module_pager-02 {
   display: flex;

@@ -11,29 +11,30 @@
 // ==========================================================================
 // カスタムポストの設定
 // ==========================================================================
-// function add_custom_post()
-// {
-//   $args = array(
-//     'label' => 'イベント',
-//     'public' => true,
-//     'publicly_queryable' => true,
-//     'show_ui' => true,
-//     'query_var' => true,
-//     'capability_type' => 'post',
-//     'hierarchical' => false,
-//     'menu_position' => 5,
-//     'has_archive' => true,
-//     'rewrite' => array('with_front' => false),
-//     'supports' => array(
-//       'title',
-//       'thumbnail',
-//       'editor',
-//       'revisions',
-//     )
-//   );
-//   register_post_type('event', $args);
-// }
-// add_action('init', 'add_custom_post');
+function add_custom_post()
+{
+  $args = array(
+    'label' => '資格・検定',
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'menu_position' => 5,
+    'has_archive' => true,
+    'show_in_rest' => true,
+    'rewrite' => array('with_front' => false),
+    'supports' => array(
+      'title',
+      'thumbnail',
+      'editor',
+      'revisions',
+    )
+  );
+  register_post_type('certificationslist', $args);
+}
+add_action('init', 'add_custom_post');
 
 // ==========================================================================
 // カスタムタクソノミーの設定
@@ -41,8 +42,8 @@
 function add_custom_taxonomy()
 {
   register_taxonomy(
-    'event_cat',
-    'event',
+    'certificationslist_cat',
+    'certificationslist',
     array(
       'label' => 'カテゴリー',
       'hierarchical' => true,
@@ -109,7 +110,7 @@ function change_post_menu_label()
 {
   global $menu;
   global $submenu;
-  $name = '新着情報';
+  $name = '協会からのお知らせ';
   if (isset($menu[5])) {
     $menu[5][0] = $name;
   }
@@ -127,7 +128,7 @@ function change_post_menu_label()
 function change_post_object_label()
 {
   global $wp_post_types;
-  $name = '新着情報';
+  $name = '協会からのお知らせ';
   $labels = &$wp_post_types['post']->labels;
   $labels->name = $name;
   $labels->singular_name = $name;

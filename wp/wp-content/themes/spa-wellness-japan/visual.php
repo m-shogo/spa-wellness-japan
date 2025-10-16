@@ -51,10 +51,32 @@ $postTopId = get_option( 'page_for_posts' );
               ?>
             </span>
             </h1>
+            <?php if($en): ?>
+              <div class="gm_subTitle">
+                <div class="icon _left">
+                  <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+                </div>
+                <span><?php echo $en; ?></span>
+                <div class="icon _right">
+                  <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+                </div>
+              </div>
+            <?php endif; ?>
         </div>
       <?php else: ?>
         <div class="gm_box">
           <p class="gm_title"><span><?php echo get_archive_title(); ?></span></p>
+          <?php if($en): ?>
+            <div class="gm_subTitle">
+              <div class="icon _left">
+                <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+              </div>
+              <span><?php echo $en; ?></span>
+              <div class="icon _right">
+                <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+              </div>
+            </div>
+          <?php endif; ?>
         </div>
       <?php endif; ?>
       <?php if($img): ?>
