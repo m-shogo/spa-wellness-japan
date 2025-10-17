@@ -21,27 +21,34 @@
         </select>
       </div>
     </div>
-    <div class="ln_links-01 _over-PC">
+    <div class="module_category-01 _over-PC">
       <div class="wrap">
-      <a class="title" href="<?php echo home_url() ?>/<?php $postTopId = get_option( 'page_for_posts'); echo get_post_field('post_name', $postTopId); ?>/"><span>すべて</span></a>
-        <?php
-        $args = array(
-          'post_type' => 'post', // 投稿タイプの指定
-          'orderby' => 'id',
-          'hide_empty' => true, // 投稿がないカテゴリを出すかどうか
-          'parent' => 0,
-        );
-        $categories = get_categories( $args );
-        foreach ( $categories as $category ) {
-          //カテゴリのリンクURLを取得
-          $cat_link = get_category_link($category->cat_ID);
-          //子カテゴリのIDを配列で取得。配列の長さを変数に格納
-          $child_cat_num = count(get_term_children($category->cat_ID,'category'));
-          //親カテゴリのリスト出力
-          echo '<a class="title" href="' . $cat_link . '"><span>' . $category -> name . '</span></a>';
-          //子カテゴリが存在する場合
-        }
-        ?>
+        <a class="title" href="<?php echo home_url() ?>/<?php $postTopId = get_option( 'page_for_posts'); echo get_post_field('post_name', $postTopId); ?>/">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 0L4.3764 4.3776L0 5.994L4.3764 7.6224L6 12L7.6128 7.6224L12 5.994L7.6128 4.3776L6 0Z" fill="#999999"/>
+            </svg>
+          </div>
+          <span>すべて</span>
+        </a>
+          <?php
+          $args = array(
+            'post_type' => 'post', // 投稿タイプの指定
+            'orderby' => 'id',
+            'hide_empty' => true, // 投稿がないカテゴリを出すかどうか
+            'parent' => 0,
+          );
+          $categories = get_categories( $args );
+          foreach ( $categories as $category ) {
+            //カテゴリのリンクURLを取得
+            $cat_link = get_category_link($category->cat_ID);
+            //子カテゴリのIDを配列で取得。配列の長さを変数に格納
+            $child_cat_num = count(get_term_children($category->cat_ID,'category'));
+            //親カテゴリのリスト出力
+            echo '<a class="title" href="' . $cat_link . '"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 0L4.3764 4.3776L0 5.994L4.3764 7.6224L6 12L7.6128 7.6224L12 5.994L7.6128 4.3776L6 0Z" fill="#999999"/></svg></div><span>' . $category -> name . '</span></a>';
+            //子カテゴリが存在する場合
+          }
+          ?>
       </div>
     </div>
   </nav>

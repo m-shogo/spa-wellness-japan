@@ -3,9 +3,9 @@
     <section>
       <?php get_template_part( 'visual' ); ?>
       <?php if (get_post_type() === 'post'||is_category()): //通常投稿 ?>
+        <?php get_sidebar('archive'); ?>
         <div class="content_inner">
           <div class="gc_main _oneColumn">
-            <?php get_sidebar('archive'); ?>
             <?php get_template_part( 'list','news' ); ?>
           </div>
         </div>

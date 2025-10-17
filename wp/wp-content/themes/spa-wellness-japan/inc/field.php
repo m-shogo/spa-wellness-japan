@@ -126,8 +126,8 @@ add_action('acf/init', function () {
   if (function_exists('acf_register_block_type')) {
     acf_register_block_type(array(
       'name'              => 'button',
-      'description'       => 'ボタンブロック',
-      'title'             => 'その他ボタン',
+      'description'       => 'ページ内リンクブロック',
+      'title'             => 'ページ内リンク',
       'render_template'   => get_template_directory() . '/acf/blocks/button.php',
       'category'          => 'design',
       'icon'              => 'button',
@@ -210,6 +210,15 @@ add_action('acf/init', function () {
     //     'innerBlocks' => true,
     //   ],
     // ]);
+    acf_register_block_type(array(
+      'name'              => 'certificationslist',
+      'title'             => '資格・検定 一覧',
+      'description'       => '資格・検定 一覧ブロック',
+      'render_template'   => get_template_directory() . '/acf/blocks/certificationslist.php',
+      'category'          => 'formatting',
+      'icon'              => 'edit',
+      'keywords'          => array('certificationslist', '資格・検定', '一覧'),
+    ));
   }
 });
 
@@ -429,6 +438,7 @@ function custom_allowed_block_types_all($allowed_block_types, $block_editor_cont
     // 'acf/tab-container',          // ACF タブコンテナ（親）
     // 'acf/tab-panel',              // ACF タブコンテンツ（子）
     // ※ タブボタンはACFフィールドで実装するためブロックとしては不要
+    'acf/certificationslist',     // ACF 資格・検定 一覧
   );
 
   return $allowed;

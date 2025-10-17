@@ -510,16 +510,16 @@ label {
   display: flex;
   justify-content: center;
   margin-top: 40px !important;
+  gap: 10px;
   @include breakPoint_over-TB {
     margin-top: 80px !important;
+    gap: 20px;
   }
   li {
     display: none;
     width: 40px;
     height: 40px;
-    margin: 0 5px;
     @include breakPoint_over-PC {
-      margin: 0 10px;
     }
     &.prev,
     &.next {
@@ -624,6 +624,11 @@ label {
         pointer-events: none;
         a{
           color: #AAAAAA;
+          svg{
+            path{
+              stroke: #AAAAAA;
+            }
+          }
         }
       }
       @include breakPoint_over-TB {
@@ -644,6 +649,11 @@ label {
         pointer-events: none;
         a{
           color: #AAAAAA;
+          svg{
+            path{
+              stroke: #AAAAAA;
+            }
+          }
         }
       }
       @include breakPoint_over-TB {
@@ -2022,3 +2032,103 @@ label {
   }
 }
 
+.module_select-01{
+  width: 100%;
+  margin-bottom: 35px;
+  padding: 0 20px;
+  @include breakPoint_over-TB{
+  }
+  .wrap{
+    position: relative;
+    &::after{
+      content: "\f078";
+      @include font-awesome(500);
+      position: absolute;
+      top: 50%;
+      right: 0;
+      pointer-events: none;
+      transform: translateY(-50%);
+      color: $color-secondary;
+      width: 50px;
+      height: 100%;
+      background-color: $color-primary;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 1.2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  select{
+    background-color: transparent !important;
+    border: 1px solid $color-primary;
+    padding: 5px 60px 5px 10px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.65px;
+    color: $color-primary;
+    &:hover,&:focus{
+      @include breakPoint_over-TB{
+        border: 1px solid transparent !important;
+        box-shadow: none;
+      }
+    }
+    option{
+
+    }
+  }
+}
+
+
+.module_category-01{
+  border-bottom: 1px solid #BCD4EC;
+  .global_mainVisual + .local_navigation &{
+    @include breakPoint_over-PC{
+      margin: -80px 0 55px;
+    } 
+  }
+  .wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 60px;
+    a{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%; /* 16px */
+      letter-spacing: 0.8px;
+      text-decoration: none;
+      color: #999;
+      transition: $transition-duration;
+      .icon{
+        display: flex;
+        svg{
+          path{
+            transition: $transition-duration;
+          }
+        }
+      }
+      &:hover,&._current{
+        color: #3C6FAC;
+        svg{
+          path{
+            fill: #3C6FAC;
+          }
+        }
+      }
+    }
+  }
+}

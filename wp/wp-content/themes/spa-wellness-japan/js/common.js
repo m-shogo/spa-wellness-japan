@@ -237,6 +237,32 @@ window.addEventListener('resize', setVw);
     }
     if (best) setCurrentState(best);
   };
+  // ==========================================================================
+  // ローカルナビゲーションカレント制御
+  // ==========================================================================
+  const moduleCategory = function () {
+    $(document).ready(function() {
+      // 現在のページのパスを取得（例: "/news/category/competition/"）
+      const currentPath = window.location.pathname;
+      
+      // すべての .title クラスを持つaタグを検索
+      $('.module_category-01 .title').each(function() {
+        // aタグのhref属性を取得
+        const href = $(this).attr('href');
+        
+        // href属性からパス部分を抽出
+        // "//localhost:3000/news/category/competition/" → "/news/category/competition/"
+        const hrefPath = href.replace(/^\/\/[^\/]+/, '');
+        
+        // 現在のパスとhrefのパスが一致するかチェック
+        if (currentPath === hrefPath) {
+          // 一致した場合、_currentクラスを追加
+          $(this).addClass('_current');
+        }
+      });
+    });
+  };
+
 
   // ==========================================================================
   // スムーススクロール制御（ヘッダー分の高さは「const header = $('#global_header').height() * 2.5;」で調整）
@@ -660,6 +686,36 @@ window.addEventListener('resize', setVw);
     });
   };
 
+  // ==========================================================================
+  // selectリンク
+  // ==========================================================================
+  const moduleSelect = function () {
+    // select後移行
+    $('.module_select-01 select').on('change', function () {
+      if ($(this).val() != '') {
+        location.href = $(this).val();
+      }
+    });
+    // select移行後ラベルをselectedにする
+    const dir = location.href.split('/');
+    const dir1 = dir[dir.length - 2];
+    const dir2 = dir[dir.length - 3];
+    $('.module_select-01 select option').each(function () {
+      let value = $(this).val();
+      value = value.split('/');
+      let value1 = value[value.length - 2];
+      if (dir2 !== 'category' && dir2 !== 'date') {
+        // /news/category/news/の場合や初期ラベル（カテゴリ、年度別）を除く
+        $(this).prop('selected', true);
+        return false;
+      } else {
+        if (dir1 === value1) {
+          $(this).prop('selected', true);
+        }
+      }
+    });
+  };
+
 
   // ==========================================================================
   // 実行
@@ -667,6 +723,7 @@ window.addEventListener('resize', setVw);
   $('#global_header').floatingWidget();
   globalNavCurrent();
   localNavCurrent();
+  moduleCategory();
   pageScroll();
   toggleMenu();
   addCss();
@@ -680,4 +737,5 @@ window.addEventListener('resize', setVw);
   tab();
   archiveNavigation();
   scrollHint();
+  moduleSelect();
 })(jQuery);

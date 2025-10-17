@@ -264,6 +264,20 @@ body {
   height: 9px;
 }
 
+@mixin icon-star2($color: #3C6FAC) {
+  $hex-str: ie-hex-str($color);
+  $processed-color: string.slice($hex-str, 4);
+
+  content: "";
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M6%200L4.3764%204.3776L0%205.994L4.3764%207.6224L6%2012L7.6128%207.6224L12%205.994L7.6128%204.3776L6%200Z%22%20fill%3D%22%23#{$processed-color}%22%2F%3E%3C%2Fsvg%3E');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  width: 12px;
+  height: 13px;
+}
+
 
 
 // ==========================================================
@@ -910,6 +924,9 @@ body {
     @include breakPoint_over-PC() {
       gap: 24px !important;
     }
+    &:has(.button-type02){
+      gap: 20px !important;
+    }
     .wp-block-button {
       display: block;
       position: relative;
@@ -1053,11 +1070,95 @@ body {
           }
         }
       }
+      // ボタン小
+      &.button-type02{
+        gap: 20px;
+        &::before,&::after{
+          content: none !important;
+        }
+        a{
+          position: relative;
+          display: inline-block;
+          padding: 3px 0 3px 40px;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 150%; /* 24px */
+          letter-spacing: 0.8px;
+          text-decoration: none;
+          color: $color-text;
+          max-width: none;
+          border-radius: 0;
+          &::before,
+          &::after {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            display: block;
+            width: 30px;
+            height: 30px;
+            content: '';
+            background-image: none;
+            transition: $transition-duration;
+          }
+          &::before {
+            border: 1px solid #0696B1;
+            background-color: #0696B1;
+            border-radius: 50%;
+            content: "" !important;
+            margin: 0 !important;
+          }
+          &::after {
+            @include font-awesome(400);
+            color: $color-secondary;
+            font-size: 12px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 0;
+          }
+          &:hover {
+            &::before {
+              background-color: $color-secondary;
+            }
+            &::after {
+              color: #0696B1;
+            }
+          }
+          &[target='_blank'] {
+            &::after {
+              @include icon-blank;
+            }
+          }
+          &[href$='.doc'],
+          &[href$='.docx'],
+          &[href$='.docm'],
+          &[href$='.xls'],
+          &[href$='.xlsx'],
+          &[href$='.xlsm'],
+          &[href$='.png'],
+          &[href$='.jpg'],
+          &[href$='.jpeg'],
+          &[href$='.gif'],
+          &[href$='.webp'] {
+            &::after {
+              @include icon-file;
+            }
+          }
+          &[href$='.pdf'] {
+            &::after {
+              @include icon-pdf;
+            }
+          }
+          &:not([target='_blank']):not([href$='.pdf']):not([href$='.doc']):not([href$='.docx']):not([href$='.docm']):not([href$='.xls']):not([href$='.xlsx']):not([href$='.xlsm']):not([href$='.png']):not([href$='.jpg']):not([href$='.jpeg']):not([href$='.gif']):not([href$='.webp']) {
+            &::after {
+              @include icon-arrow;
+            }
+          }
+        }
+      }
     }
     ///////// 個別設定 /////////
-    // ボタン小
-    &.small {
-    }
   }
 }
 
@@ -1210,6 +1311,7 @@ body {
       }
     }
     &.--small{
+      gap: 20px;
       a{
         position: relative;
         display: inline-block;
@@ -1221,6 +1323,9 @@ body {
         letter-spacing: 0.8px;
         text-decoration: none;
         color: $color-text;
+        &::after{
+          content: none;
+        }
         &:hover {
           span {
             &::before {
@@ -1297,6 +1402,9 @@ body {
           }
         }
       }
+    }
+    &._column{
+      flex-direction: column;
     }
   }
 }
@@ -1501,6 +1609,13 @@ body {
         }
       }
     }
+    &._certificationslist{
+      .accordion {
+        .body {
+          padding-bottom: 30px;
+        }
+      }
+    }
     .accordion {
       transition: $transition-duration;
       &:hover {
@@ -1607,6 +1722,9 @@ body {
         }
         .text {
           display: flow-root;
+          .module_button{
+            margin-top: 30px;
+          }
         }
       }
     }
