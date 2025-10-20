@@ -1088,6 +1088,7 @@ body {
           text-decoration: none;
           color: $color-text;
           max-width: none;
+          min-width: auto;
           border-radius: 0;
           &::before,
           &::after {

@@ -1708,18 +1708,118 @@
 // ==========================================================================
 .top_title-01 {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  @include breakPoint_over-PC {
+    margin-bottom: 40px;
+  }
+  &._white{
+    .title-main {
+      &::before{
+        background-color: #FFFFFF;
+      }
+    }
+  }
+  &._small{
+    @include breakPoint_over-PC {
+      text-align: left;
+      align-items: flex-start;
+    }
+    .title-main {
+      @include breakPoint_over-PC {
+        font-size: 54px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 5.4px;
+      }
+    }
+    .title-sub {
+      @include breakPoint_over-PC {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 30px; /* 187.5% */
+        letter-spacing: 0.8px;
+      }
+    }
+  }
   .title-main,
   .title-sub {
-    display: block;
+    display: flex;
     text-align: center;
   }
   .title-main {
-    font-size: 30px;
-    font-weight: 700;
+    position: relative;
+    font-family: Marcellus;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2px;
+    @include breakPoint_over-PC {
+      font-size: 64px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 3.2px;
+    }
+    &::before{
+      content: "";
+      width: 30px;
+      height: 30px;
+      top: 0;
+      left: -9px;
+      z-index: -1;
+      border-radius: 50%;
+      background-color: #CEF1FD;
+      position: absolute;
+      @include breakPoint_over-PC {
+        width: 40px;
+        height: 40px;
+        left: -18px;
+      }
+    }
   }
   .title-sub {
-    color: $color-gray-border;
+    margin-top: 5px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.75px;
+    color: #164073;
+    @include breakPoint_over-PC {
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 1px;
+    }
   }
+  .icon{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+    svg{
+      path{
+        fill: #164073;
+      }
+    }
+  } 
+}
+.top_text-01{
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+  letter-spacing: 0.8px;
+  text-align: center;
 }
 .top_button {
   display: flex;
@@ -1903,5 +2003,98 @@
   grid-template-columns: 1fr 1fr;
   @include breakPoint_over-PC {
     display: none;
+  }
+}
+
+.top_about-01{
+  padding: 50px 0 60px;
+  @include breakPoint_over-PC {
+    padding: 126px 0 164px;
+  }
+  .global_inner{
+    @include breakPoint_over-PC {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 270px 1fr;
+      gap: 40px;
+      max-width: calc(885px + 120px);
+    }
+    .titleBox{
+      .top_title-01{
+        @include breakPoint_over-PC {
+          margin-bottom: 0;
+        } 
+        .title-main{
+          @include breakPoint_over-PC {
+            margin-left: 18px;
+          }
+        }
+      }    
+    }
+    .contentsBox{
+      @include wp-block-buttonLink-style;
+      .top_text-01{
+        text-align: left;
+        @include breakPoint_over-PC {
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 180%; /* 28.8px */
+          letter-spacing: 0.8px;
+        }
+      }
+      .wp-block-buttons{
+        margin-top: 30px;
+        @include breakPoint_over-PC {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .wp-block-button{
+          @include breakPoint_over-PC{
+            display: inline-block;
+            width: auto;
+            min-width: auto !important;
+          }
+          .wp-block-button__link{
+            max-width: none;
+            @include breakPoint_over-PC {
+              width: auto;
+              display: inline-flex;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.top_publications-01{
+  position: relative;
+  padding: 60px 0;
+  background-color: #F6F7FB;
+  @include breakPoint_over-PC {
+    padding: 100px 0;
+  }
+  .global_inner{
+    max-width: calc(960px + 120px);
+  }
+  .top_text-01{
+    margin-bottom: 40px;
+    @include breakPoint_over-PC {
+      margin-bottom: 60px;
+    }
+  }
+  .module_publications-02{
+    margin-top: 60px;
+  }
+}
+.top_link-01{
+  position: relative;
+  padding: 60px 0;
+  @include breakPoint_over-PC {
+    padding: 100px 0;
+  }
+  .global_inner{
+    max-width: calc(865px + 120px);
   }
 }

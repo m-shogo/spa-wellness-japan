@@ -2132,3 +2132,300 @@ label {
     }
   }
 }
+
+
+.module_linkBox-01{
+  display: grid;
+  gap: 40px;
+  .wrap{
+    background-color: transparent !important;
+    border-radius: 5px;
+    border: 1px solid $color-primary;
+    outline: 1px solid #BCD4EC;
+    outline-offset: -11px;
+    padding: 40px 30px;
+    @include breakPoint_over-PC{
+      padding: 50px 70px;
+    }
+    &:has(.bannerBox){
+      @include breakPoint_over-PC{
+        padding: 50px 60px;
+      }
+      .inner{
+        @include breakPoint_over-PC{
+          grid-template-areas:
+            "title"
+            "banner";
+          grid-template-columns: auto;
+          grid-template-rows: auto;
+          gap: 30px 0;
+        }
+      }
+    }
+    .inner{
+      @include breakPoint_over-PC{
+        display: grid;
+        grid-template-areas:
+          "title title"
+          "image contents";
+        grid-template-columns: 260px 1fr;
+        grid-template-rows: auto auto;
+        gap: 40px 40px;
+        align-items: center;
+      }
+
+      .titleBox{
+        @include breakPoint_over-PC{
+          grid-area: title;
+        }
+        .title{
+          text-align: center;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 150%; /* 27px */
+          letter-spacing: 0.9px;
+          margin-bottom: 30px;
+          @include breakPoint_over-PC{
+            margin-bottom: 0;
+          }
+        }
+        .title2{
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          letter-spacing: 0.9px;
+          display: grid;
+          grid-template-columns: 41px auto 41px;
+          gap: 10px;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 30px;
+          @include breakPoint_over-PC{
+            margin-bottom: 0;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: 1px;
+          }
+          .icon{
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            &._left{
+              &::after{
+                content: "";
+                width: 30px;
+                height: 1px;
+                background-color: #164073;
+                @include breakPoint_over-PC {
+                  width: 15px;
+                }
+              }
+            }
+            &._right{
+              &::before{
+                content: "";
+                width: 30px;
+                height: 1px;
+                background-color: #164073;
+                @include breakPoint_over-PC {
+                  width: 15px;
+                }
+              }
+            }
+            svg{
+              path{
+                fill: #164073;
+              }
+            }
+          }
+        } 
+      }
+      .imageBox{
+        margin-bottom: 20px;
+        @include breakPoint_over-PC{
+          margin-bottom: 0;
+          grid-area: image;
+        }
+        .image{
+          img{}
+        }
+      }
+      .contentsBox{
+        @include breakPoint_over-PC{
+          grid-area: contents;
+        }
+        .text{
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 180%; /* 28.8px */
+          letter-spacing: 0.8px;
+        } 
+        @include wp-block-button-style;
+        .module_button.--small{
+          margin-top: 20px;
+          flex-direction: column;
+          gap: 10px;
+          @include breakPoint_over-PC{
+            margin-top: 30px;
+          }
+          a{
+            span{
+              &::before{
+                border-color: #3C6FAC;
+                background-color: #3C6FAC;    
+              }
+            }
+            &:hover{
+              span{
+                &::before{
+                  background-color: $color-secondary;
+                  color: #3C6FAC;
+                }
+                &::after{
+                  color: #3C6FAC;
+                }
+              }    
+            }
+          }
+        }
+      }
+      .bannerBox{
+        display: grid;
+        justify-content: center;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        @include breakPoint_over-PC{
+          grid-area: banner;
+        }
+        a{
+          display: flex;
+          transition: $transition-duration;
+          &:hover{
+            opacity: .7;
+          }
+        }
+      }
+    }
+  }
+}
+
+.module_publications-01{
+  .wrap{
+    .inner{
+      @include breakPoint_over-PC{
+        display: grid;
+        align-items: center;
+        grid-template-columns: 520px 1fr;
+        gap: 80px;
+      }
+      .imageBox{
+        .image{
+          img{
+
+          }
+        }
+      }
+      .contentsBox{
+        @include wp-block-buttonLink-style;
+        .wp-block-buttons{
+          margin-top: 30px;
+          display: grid;
+          gap: 20px;
+          @include breakPoint_over-PC{
+            margin-top: 0;
+          }
+          .wp-block-button {
+            .wp-block-button__link{
+              max-width: none;
+              @include breakPoint_over-PC {
+                display: inline-flex;
+            }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.module_publications-02{
+  .wrap{
+    .inner{
+      padding: 30px 40px 40px;
+      background-color: $color-secondary;
+      @include breakPoint_over-PC{
+        padding: 60px;
+        display: grid;
+        grid-template-columns: 231px 1fr;
+        gap: 60px;
+      }
+      .imageBox{
+        .image{
+          text-align: center;
+          img{
+
+          }
+        }
+      }
+      .contentsBox{
+        margin-top: 20px;
+        @include breakPoint_over-PC{
+          margin-top: 0;
+        }
+        .title{
+          @include font_serif-ja(500);
+          font-size: 24px;
+          line-height: normal;
+          letter-spacing: 2.4px;
+          text-align: center;
+          margin-bottom: 20px;
+          @include breakPoint_over-PC{
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: 2.8px;
+            text-align: left;
+            margin-bottom: 30px;
+          }
+        }
+        .text{
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 180%; /* 28.8px */
+          letter-spacing: 0.8px;
+        }
+        @include wp-block-buttonLink-style;
+        .wp-block-buttons{
+          margin-top: 30px;
+          &:has(.button-type02){
+          display: grid;
+          gap: 10px !important;
+          .wp-block-button {            
+              a{
+                &::before{
+                  border-color: #3C6FAC;
+                  background-color: #3C6FAC;    
+                }
+                &:hover{
+                  &::before{
+                    background-color: $color-secondary;
+                    color: #3C6FAC;
+                  }
+                  &::after{
+                    color: #3C6FAC;
+                  } 
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
