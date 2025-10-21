@@ -88,7 +88,7 @@ $imageDir: '/wp/wp-content/themes/spa-wellness-japan/images/';
 }
 // 日本語セリフ体
 @mixin font_serif-ja($weight: 400) {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Zen Old Mincho', serif;
   font-weight: $weight;
 }
 // 英語サンセリフ体

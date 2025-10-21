@@ -1,63 +1,141 @@
 <?php get_header(); ?>
-<div class="top_mainVisual">
-  <div class="swiper tm_swiper-container">
-    <ul class="swiper-wrapper">
-      <?php if (have_rows('top_slider-01')): ?>
-        <?php while (have_rows('top_slider-01')): the_row(); ?>
-          <?php
-          $home_url = esc_url(home_url());
-          $img_pc = get_sub_field('img_pc');
-          $thumb_pc = wp_get_attachment_image_src($img_pc, 'top_main_pc');
-          $alt_pc = isset(get_post($img_pc)->ID) ? get_post_meta(get_post($img_pc)->ID, '_wp_attachment_image_alt', true) : "";
-          $img_sp = get_sub_field('img_sp');
-          $thumb_sp = wp_get_attachment_image_src($img_sp, 'top_main_sp');
-          $alt_sp = isset(get_post($img_sp)->ID) ? get_post_meta(get_post($img_sp)->ID, '_wp_attachment_image_alt', true) : "";
-          $text = get_sub_field('text');
-          ?>
-          <li class="swiper-slide">
-            <p class="tm_background"><img src="<?php echo $home_url . $thumb_sp[0]; ?>" alt="<?php echo $alt_sp; ?>" class="_only-SP"><img src="<?php echo $home_url . $thumb_pc[0]; ?>" alt="<?php echo $alt_pc; ?>" class="_over-TB"></p>
-            <div class="global_inner">
-              <?php if ($text): ?> <p class="tm_title"><span><?php echo $text; ?></span></p><?php endif; ?>
-            </div>
-          </li>
-        <?php endwhile; ?>
-      <?php endif; ?>
-    </ul>
-    <div class="swiper-pagination"></div>
+<div class="top_mainVisual">>
+  <div class="viasul">
+    <div class="swiper tm_swiper-container">
+      <ul class="swiper-wrapper">
+        <?php if (have_rows('top_slider-01')): ?>
+          <?php while (have_rows('top_slider-01')): the_row(); ?>
+            <?php
+            $home_url = esc_url(home_url());
+            $img_pc = get_sub_field('img_pc');
+            $thumb_pc = wp_get_attachment_image_src($img_pc, 'top_main_pc');
+            $alt_pc = isset(get_post($img_pc)->ID) ? get_post_meta(get_post($img_pc)->ID, '_wp_attachment_image_alt', true) : "";
+            $img_sp = get_sub_field('img_sp');
+            $thumb_sp = wp_get_attachment_image_src($img_sp, 'top_main_sp');
+            $alt_sp = isset(get_post($img_sp)->ID) ? get_post_meta(get_post($img_sp)->ID, '_wp_attachment_image_alt', true) : "";
+            ?>
+            <li class="swiper-slide">
+              <div class="tm_background">
+                <img src="<?php echo $home_url . $thumb_sp[0]; ?>" alt="<?php echo $alt_sp; ?>" class="_only-SP">
+                <img src="<?php echo $home_url . $thumb_pc[0]; ?>" alt="<?php echo $alt_pc; ?>" class="_over-TB">
+              </div>
+            </li>
+          <?php endwhile; ?>
+        <?php endif; ?>
+      </ul>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="catchcopy">
+      <div class="main"><img src="<?php echo get_template_directory_uri(); ?>/images/common/catchcopy.webp" alt="SPA Wellness"></div>
+      <div class="sub">日本スパ・ウエルネス協会は<br><span>セラピストの地位向上</span>と<br class="_only-SP"><span>業界の健全な発展</span>を目指し活動しています</div>
+    </div>
   </div>
-  <?php if (get_field('top_notice_select')): ?>
-    <section id="top_notice-01" class="top_notice-01">
-      <div class="content_inner">
-        <div class="notice">
-          <div class="head">
-            <h2 class="title">重要なお知らせ</h2>
+  <div class="contents">
+    <div class="news">
+      <div class="module_tab-01">
+        <?php
+        $postType = 'post';
+        $postsPerPage = 2;
+        $listType = 'news';
+        $postTopId = get_option('page_for_posts');
+        $postTypeTopSlug = get_post_field('post_name', $postTopId);
+        ?>
+        <ul class="module_tab-head">
+          <li class="all _current">
+            <a href="#tab01-all">
+              <span>すべて</span>
+            </a>
+          </li>
+          <?php
+          // 親カテゴリーのものだけを一覧で取得
+          $args = array(
+            'post_type' => $postType, // 投稿タイプの指定
+            'orderby' => 'id',
+            'hide_empty' => true, // 投稿がないカテゴリを出すかどうか
+            'parent' => 0,
+          );
+          $categories = get_categories( $args );
+          ?>
+          <?php foreach( $categories as $category ) : ?>
+            <?php
+            $slug = $category->slug;
+            $name = $category->name;
+            ?>
+            <li class="<?php echo $slug; ?>">
+              <a href="#tab01-<?php echo $slug; ?>">
+                <span><?php echo $name ?></span>
+              </a>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+        <div class="module_tab-body" id="tab01-all" style="display:block">
+          <?php
+          $arg = array(
+            'posts_per_page' => $postsPerPage,
+            'has_password' => false,
+            'post_type' => $postType,
+            'orderby' => 'date',
+            'order' => 'DESC'
+          );
+          $posts = get_posts($arg);
+
+          get_template_part( 'list',$listType);
+          ?>
+        </div><!-- /module_tab-body -->
+        <?php
+        // 親カテゴリーのものだけを一覧で取得
+        $args = array(
+          'post_type' => $postType, // 投稿タイプの指定
+          'orderby' => 'id',
+          'hide_empty' => true, // 投稿がないカテゴリを出すかどうか
+          'parent' => 0,
+        );
+        $categories = get_categories( $args );
+        ?>
+        <?php foreach( $categories as $category ) : ?>
+          <?php
+          $slug = $category->slug;
+          $name = $category->name;
+          ?>
+          <div class="module_tab-body" id="tab01-<?php echo $slug; ?>" style="display:none">
+            <?php
+            $arg = array(
+              'posts_per_page' => $postsPerPage,
+              'has_password' => false,
+              'post_type' => $postType,
+              'orderby' => 'date',
+              'order' => 'DESC',
+              'category_name' => $slug,
+            );
+            $posts = get_posts($arg);
+
+            get_template_part( 'list',$listType);
+            ?>
           </div>
-          <div class="body">
-            <?php if (have_rows('top_notice-01')): ?>
-              <ul>
-                <?php while (have_rows('top_notice-01')): the_row(); ?>
-                  <?php
-                  $date = get_sub_field('date', false);
-                  $date = new DateTime($date);
-                  $textarea = get_sub_field('textarea');
-                  $none = get_sub_field('none');
-                  ?>
-                  <?php if (!$none): ?>
-                    <li>
-                      <p class="date"><time datetime="<?php echo $date->format('Y-m-d'); ?>"><?php echo $date->format('Y.n.j'); ?></time></p>
-                      <div class="text">
-                        <?php echo $textarea; ?>
-                      </div>
-                    </li>
-                  <?php endif; ?>
-                <?php endwhile; ?>
-              </ul>
-            <?php endif; ?>
-          </div>
+        <?php endforeach; ?>
+      </div><!-- /module_tab-01 -->
+    </div>
+    <div class="button">
+      <h3 class="title">
+        <span class="icon _left">
+          <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+        </span> 
+        <span class="wrap">
+          <span class="main">For Members</span>
+          <span class="sub">会員の方へ</span>
+        </span> 
+        <span class="icon _right">
+          <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+        </span>
+      </h3>
+      <div class="buttonBox">
+        <div class="wp-block-buttons">
+          <div class="wp-block-button"><a href="/parts/" class="wp-block-button__link"><span>資格・検定試験一覧を見る</span></a></div>
+          <div class="wp-block-button"><a href="/parts/" class="wp-block-button__link"><span>協会公式テキスト・<br class="_over-TB">教材のご案内</span></a></div>
         </div>
       </div>
-    </section>
-  <?php endif; ?>
+    </div>
+  </div>
 </div>
 <main id="global_contents" class="global_contents" itemscope itemprop="mainContentOfPage">
   <section id="top_news-01" class="top_news-01">
@@ -134,6 +212,59 @@
         <div class="top_text-01">日本スパ・ウエルネス協会は、セラピストの社会的地位の向上と確立、我が国における健全なエステティック普及や発展を目的として幅広い活動を展開している団体です。</div>
         <div class="wp-block-buttons">
           <div class="wp-block-button"><a href="/about/" class="wp-block-button__link"><span>日本スパ・ウエルネス協会とは</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <section id="top_certification-01" class="top_certification-01">
+    <div class="global_inner">
+      <h2 class="top_title-01">
+        <span class="title-main">Certification List</span>
+        <span class="title-sub">認定試験のご紹介</span>
+        <span class="icon">
+          <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+          <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+          <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+        </span>
+      </h2>
+      <div class="top_text-01">当協会では、スパ・ウエルネス分野における専門性を高めるための多彩な資格をご用意しています。</div>
+      <div class="list_swiper-container">
+        <?php
+        $arg = array(
+          'posts_per_page' => 6,
+          'has_password' => false,
+          'post_type' => 'certificationslist',
+          'orderby' => 'date',
+          'order' => 'DESC'
+        );
+        $query = new WP_Query($arg);
+        if ($query->have_posts()): ?>
+          <?php get_template_part('list', 'certificationList', [
+            'is_slider' => true,
+            'query' => $query,
+          ]); ?>
+        <?php else: ?>
+          <p>現在、認定試験のご紹介はありません。</p>
+        <?php endif; ?>
+        <div class="button">
+          <div class="swiper-button-prev list-button-prev">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="50" height="50" rx="25" fill="#3C6FAC"/>
+              <path d="M16 27.5H34L29 22.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="swiper-button-next list-button-next">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="50" height="50" rx="25" fill="#3C6FAC"/>
+              <path d="M16 27.5H34L29 22.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="buttonBox">
+        <div class="wp-block-buttons">
+          <div class="wp-block-button"><a href="/parts/" class="wp-block-button__link"><span>すべての資格・検定を見る</span></a></div>
+          <div class="wp-block-button"><a href=".pdf" class="wp-block-button__link"><span>年間スケジュール</span></a></div>
         </div>
       </div>
     </div>

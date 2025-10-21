@@ -501,7 +501,110 @@ label {
 // ==========================================================================
 @include wp-block-newsCard-style; // ニュースカード
 @include wp-block-newsList-style; // ニュースリスト
-
+.module_certificationsList-01{
+  .wrap{
+    .inner{
+      padding: 25px;
+      border-radius: 5px;
+      border: 1px solid $color-primary;
+      outline: 1px solid #BCD4EC;
+      outline-offset: -6px;
+      @include breakPoint_over-PC {
+        padding: 30px 40px;
+      }
+      .contentsBox{
+        @include wp-block-buttonLink-style;
+        display: grid;
+        gap: 20px;
+        > a{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          text-decoration: none;
+          color: #3C6FAC;
+          &:hover{
+            text-decoration: underline;
+          }
+          .title{
+            @include font_serif-ja(500);
+            font-size: 18px;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: 0.9px;
+            @include breakPoint_over-PC{
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+              letter-spacing: 1px;
+            }
+          }
+          .arrow{
+            display: flex;
+          }
+        }
+        .text{
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          letter-spacing: 0.75px;
+        }
+        .wp-block-buttons{
+          display: grid;
+          gap: 10px !important;
+          @include breakPoint_over-PC {
+            margin-top: 10px;
+          }
+          .wp-block-button{
+            &::before,&::after{
+              content: none !important;
+            }
+            .wp-block-button__link{
+              max-width: none;
+              background-color: #3C6FAC;
+              border: 1px solid #3C6FAC;
+              transition: $transition-duration;
+              min-width: auto;
+              &::before{
+                color: $color-secondary;
+                transition: $transition-duration;
+              }
+              &::after{
+                content: none !important;
+              }
+              .arrow{
+                display: flex;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                svg{
+                  path{
+                    transition: $transition-duration;
+                  }
+                }
+              }
+              &:hover{
+                background-color: $color-secondary;
+                color: #3C6FAC;
+                &::before{
+                  color: #3C6FAC;
+                }
+                svg{
+                  path{
+                    stroke: #3C6FAC;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 // ==========================================================================
 // ページネーション
 // ==========================================================================
@@ -2298,9 +2401,10 @@ label {
         display: grid;
         justify-content: center;
         gap: 20px;
-        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         @include breakPoint_over-PC{
           grid-area: banner;
+          grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
         }
         a{
           display: flex;
@@ -2344,7 +2448,7 @@ label {
               max-width: none;
               @include breakPoint_over-PC {
                 display: inline-flex;
-            }
+              }
             }
           }
         }

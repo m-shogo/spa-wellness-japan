@@ -709,35 +709,20 @@
         .tm_background {
           position: relative;
           overflow: hidden;
-          padding-bottom: 375px;
           width: 100%;
-          height: 0;
+          height: 260px;
           @include breakPoint_over-PC {
-            padding-bottom: 600px;
+            height: 420px;
           }
           img {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            max-width: none;
-            max-height: none;
-            width: auto;
+            width: 100%;
             height: 100%;
-            transform: translate(-50%, -50%);
             object-fit: cover;
-            @include breakPoint_over-SP {
-              width: 100%;
-              height: auto;
-            }
             @include breakPoint_over-PC {
               min-width: 100%;
               min-height: 100%;
               width: auto;
               height: 100%;
-            }
-            @include breakPoint_original-min(1380px) {
-              width: 100%;
-              height: auto;
             }
           }
         }
@@ -754,33 +739,174 @@
       width: 100%;
       height: 100%;
     }
-    .tm_title {
-      font-size: 30px;
-      font-weight: 700;
-      color: $color-secondary;
-      text-align: center;
-    }
     .swiper-pagination {
       display: flex;
       justify-content: center;
       position: absolute;
-      left: 50%;
-      top: 345px;
-      transform: translateX(-50%);
+      flex-direction: column;
+      gap: 8px;
+      margin: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 14px;
       @include breakPoint_over-PC {
         top: auto;
         bottom: 20px;
       }
       .swiper-pagination-bullet {
         opacity: 1;
-        margin: 0 5px;
-        width: 12px;
-        height: 12px;
+        margin: 0;
+        width: 10px;
+        height: 10px;
         background-color: $color-secondary;
+        border: 1px solid #164073;
         transition: background-color $transition-duration;
         &:hover,
         &-active {
-          background-color: $color-primary;
+          background-color: #164073;
+        }
+      }
+    }
+  }
+  .viasul{
+    overflow: hidden;
+    .catchcopy{
+      position: relative;
+      z-index: 2;
+      .main{
+        display: flex;
+        position: absolute;
+        z-index: 2;
+        top: auto;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        img{
+          width: 400px;
+          max-width: none;
+        }
+      }
+      .sub{
+        padding-top: 40px;
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        @include font_serif-ja(500);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 160%; /* 25.6px */
+        letter-spacing: 0.8px;
+        span{
+          color: #0696B1;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .contents{
+    .news{
+
+    }
+    .button{
+      margin-top: 40px;
+      padding: 0 20px;
+      .title{
+        display: grid;
+        grid-template-columns: 41px auto 41px;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        @include breakPoint_over-PC{
+          margin-bottom: 0;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          letter-spacing: 1px;
+        }
+        .wrap{
+          display: inline-flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: 5px 20px;
+        }
+        .main{
+          font-family: Marcellus;
+          font-size: 22px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 30px; /* 136.364% */
+          letter-spacing: 1.1px;
+        }
+        .sub{
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          letter-spacing: 0.6px;
+          color: #164073;
+        }
+        .icon{
+          display: flex;
+          align-items: center;
+          gap: 3px;
+          &._left{
+            &::after{
+              content: "";
+              width: 30px;
+              height: 1px;
+              background-color: #164073;
+              @include breakPoint_over-PC {
+                width: 15px;
+              }
+            }
+          }
+          &._right{
+            &::before{
+              content: "";
+              width: 30px;
+              height: 1px;
+              background-color: #164073;
+              @include breakPoint_over-PC {
+                width: 15px;
+              }
+            }
+          }
+          svg{
+            path{
+              fill: #164073;
+            }
+          }
+        }
+      } 
+      .buttonBox{
+        @include wp-block-buttonLink-style;
+        @include breakPoint_over-PC {
+        }
+        .wp-block-buttons{
+          display: flex;
+          flex-direction: column;
+          gap: 20px !important;
+          @include breakPoint_over-PC {
+            flex-direction: row;
+            justify-content: center;
+            gap: 40px !important;
+          }
+          .wp-block-button{
+            min-width: auto !important;
+            .wp-block-button__link{
+              min-width: auto;
+              max-width: none;
+              @include breakPoint_over-PC {
+                min-width: 300px;
+              }
+            }
+          }
         }
       }
     }
@@ -2067,7 +2193,142 @@
     }
   }
 }
+.top_certification-01{
+  padding: 0 0 60px;
+  @include breakPoint_over-PC {
+    padding: 0 0 90px;
+  }
+  .global_inner{
+    max-width: calc(1260px + 120px);
+  }
+  .list_swiper-container{
+    margin-top: 30px;
+    position: relative;
+    @include breakPoint_over-PC {
+      margin: 60px 0 0;
+      max-width: 1260px;
+      overflow: hidden;
+    }
+    .swiper-wrapper{
+      @include breakPoint_over-PC {
+        
+      }
+      .swiper-slide{
+        max-width: 300px;
+        width: 100%;
+        @include breakPoint_over-PC {
+          max-width: 360px;
+        }
+      }
+    }    
+  }
+  .button{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 30px;
+    pointer-events: none;
+    @include breakPoint_over-PC {
+      margin-top: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+      width: 100%;
+      left: 0;
+      z-index: 2;
+      justify-content: space-between;
+    }
+    .swiper-button-prev,.swiper-button-next{
+      pointer-events: all;
+      position: relative;
+      top: auto;
+      margin: 0;
+      transform: none;
+      width: 40px;
+      height: 40px;
+      right: auto;
+      left: auto;
 
+      transition: $transition-duration;
+      @include breakPoint_over-PC{
+        width: 50px;
+        height: 50px;
+      }
+      svg{
+        position: relative;
+        z-index: 2;
+        border: 1px solid #3C6FAC;
+        background-color: #3C6FAC;
+        border-radius: 50%;
+        path,rect{
+          transition: $transition-duration;
+        }
+      }
+      &::before{
+        @include breakPoint_over-PC{
+          content: "";
+          pointer-events: none;
+          height: 100vh;
+          width: calc(100% + 40px);
+          transform: translateY(-50%);
+          background-color: #fff;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          margin: 0 -20px;
+        }
+      }
+      &::after{
+        content: none;
+      }
+      &:hover{
+        svg{
+          rect{
+            fill: $color-secondary;
+          }
+          path{
+            stroke: #3C6FAC;
+          }
+        }        
+      }
+    }
+    .swiper-button-prev{
+      scale: -1 1;
+    }
+    .swiper-button-next{
+    }
+  }
+  .buttonBox{
+    margin-top: 30px;
+    @include wp-block-buttonLink-style;
+    @include breakPoint_over-PC {
+      margin-top: 60px;
+    }
+    .wp-block-buttons{
+      display: flex;
+      flex-direction: column;
+      gap: 20px !important;
+      @include breakPoint_over-PC {
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px !important;
+      }
+      .wp-block-button{
+        min-width: auto !important;
+        .wp-block-button__link{
+          min-width: auto;
+          max-width: none;
+          @include breakPoint_over-PC {
+            min-width: 300px;
+          }
+        }
+      }
+    }
+  }
+}
 .top_publications-01{
   position: relative;
   padding: 60px 0;

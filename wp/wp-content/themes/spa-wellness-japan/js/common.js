@@ -716,6 +716,19 @@ window.addEventListener('resize', setVw);
     });
   };
 
+  // ==========================================================================
+  // アコーディオン
+  // ==========================================================================
+  const accordionOpen = function () {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const $li = $('.module_accordion-01 ' + hash);
+    if ($li.length === 0) return;
+    if (!$li.hasClass('accordion')) return;
+    $li.addClass('_open');
+    $li.children('.body').css('display', 'block');
+  };
+
 
   // ==========================================================================
   // 実行
@@ -738,4 +751,5 @@ window.addEventListener('resize', setVw);
   archiveNavigation();
   scrollHint();
   moduleSelect();
+  accordionOpen();
 })(jQuery);
