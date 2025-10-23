@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="top_mainVisual">>
+<div class="top_mainVisual">
   <div class="viasul">
     <div class="swiper tm_swiper-container">
       <ul class="swiper-wrapper">
@@ -32,7 +32,7 @@
   </div>
   <div class="contents">
     <div class="news">
-      <div class="module_tab-01">
+      <div class="module_tab-02">
         <?php
         $postType = 'post';
         $postsPerPage = 2;
@@ -40,34 +40,39 @@
         $postTopId = get_option('page_for_posts');
         $postTypeTopSlug = get_post_field('post_name', $postTopId);
         ?>
-        <ul class="module_tab-head">
-          <li class="all _current">
-            <a href="#tab01-all">
-              <span>すべて</span>
-            </a>
-          </li>
-          <?php
-          // 親カテゴリーのものだけを一覧で取得
-          $args = array(
-            'post_type' => $postType, // 投稿タイプの指定
-            'orderby' => 'id',
-            'hide_empty' => true, // 投稿がないカテゴリを出すかどうか
-            'parent' => 0,
-          );
-          $categories = get_categories( $args );
-          ?>
-          <?php foreach( $categories as $category ) : ?>
-            <?php
-            $slug = $category->slug;
-            $name = $category->name;
-            ?>
-            <li class="<?php echo $slug; ?>">
-              <a href="#tab01-<?php echo $slug; ?>">
-                <span><?php echo $name ?></span>
-              </a>
-            </li>
-          <?php endforeach; ?>
-        </ul>
+        <div class="module_tab-head">
+          <h2 class="title">
+            <span class="main">News</span>
+            <span class="sub">協会からのお知らせ</span>
+          </h2>
+          <div class="module_select-02">
+            <div class="wrap">
+              <select name="area">
+                <option disabled selected value>カテゴリーを選択</option>
+                <option value="tab01-all">すべて</option>
+                <?php
+                // 親カテゴリーのものだけを一覧で取得
+                $args = array(
+                  'post_type' => $postType, // 投稿タイプの指定
+                  'orderby' => 'id',
+                  'hide_empty' => true, // 投稿がないカテゴリを出すかどうか
+                  'parent' => 0,
+                );
+                $categories = get_categories( $args );
+                ?>
+                <?php foreach( $categories as $category ) : ?>
+                  <?php
+                  $slug = $category->slug;
+                  $name = $category->name;
+                  ?>
+                  <option value="tab01-<?php echo $slug; ?>">
+                    <?php echo $name ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="module_tab-body" id="tab01-all" style="display:block">
           <?php
           $arg = array(
@@ -113,6 +118,14 @@
             ?>
           </div>
         <?php endforeach; ?>
+        <a href="/news/" class="tab-button">
+          <span>お知らせ一覧を見る</span>
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="4" viewBox="0 0 10 4" fill="none">
+              <path d="M0.5 3.5H9.5L7 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
       </div><!-- /module_tab-01 -->
     </div>
     <div class="button">
@@ -138,69 +151,11 @@
   </div>
 </div>
 <main id="global_contents" class="global_contents" itemscope itemprop="mainContentOfPage">
-  <section id="top_news-01" class="top_news-01">
-    <div class="global_inner">
-      <h2 class="top_title-01"><span class="title-main">タイトル</span><span class="title-sub">Sub title</span></h2>
-      <?php
-      $arg = array(
-        'posts_per_page' => 4,
-        'orderby' => 'date',
-        'order' => 'DESC'
-      );
-      $posts = get_posts($arg);
-      if ($posts): ?>
-        <?php get_template_part('list', 'news'); ?>
-      <?php else: ?>
-        <p>お知らせはありません。</p>
-      <?php endif; ?>
-      <p class="top_button"><a href="<?php echo get_post_type_archive_link('post'); ?>" class="top_button-01"><span>ボタン</span></a></p>
-    </div>
-  </section>
-  <section id="top_news-02" class="top_news-02 _bg_color-gray-01">
-    <div class="global_inner">
-      <h2 class="top_title-01"><span class="title-main">タイトル</span><span class="title-sub">Sub title</span></h2>
-      <?php
-      $arg = array(
-        'posts_per_page' => 6,
-        'has_password' => false,
-        'post_type' => 'event',
-        'orderby' => 'date',
-        'order' => 'DESC'
-      );
-      $posts = get_posts($arg);
-      if ($posts): ?>
-        <?php get_template_part('list', 'card'); ?>
-      <?php else: ?>
-        <p>記事はありません。</p>
-      <?php endif; ?>
-      <p class="top_button"><a href="<?php echo get_post_type_archive_link('event'); ?>" class="top_button-01"><span>ボタン</span></a></p>
-    </div>
-  </section>
-  <div id="top_banner-01" class="top_banner-01">
-    <div class="global_inner">
-      <?php if (have_rows('top_banner-01')): ?>
-        <ul class="list">
-          <?php while (have_rows('top_banner-01')): the_row(); ?>
-            <?php
-            $img = get_sub_field('img');
-            $thumb = wp_get_attachment_image_src($img, 'top_banner');
-            $title = get_sub_field('title');
-            $alt = isset(get_post($img)->ID) ? get_post_meta(get_post($img)->ID, '_wp_attachment_image_alt', true) : "";
-            $url = get_sub_field('url');
-            $target = get_sub_field('target');
-            ?>
-            <li <?php if (empty($img)): ?>class="_noImage" <?php endif; ?>>
-              <a <?php if (!empty($url)): ?>href="<?php echo esc_url($url); ?>" <?php if ($target): ?>target="_blank" <?php endif; ?><?php else: ?> class="_disabled" tabindex="-1" <?php endif; ?>>
-                <?php if ($img): ?><p class="image"><img src="<?php echo $thumb[0]; ?>" alt="<?php echo $alt; ?>"></p><?php endif; ?>
-                <?php if ($title): ?><p class="title"><?php echo $title; ?></p><?php endif; ?>
-              </a>
-            </li>
-          <?php endwhile; ?>
-        </ul>
-      <?php endif; ?>
-    </div>
-  </div>
   <section id="top_about-01" class="top_about-01">
+    <div class="bg">
+      <img src="<?php echo get_template_directory_uri(); ?>/images/common/ico-wave.svg" alt="bg" class="_over-TB">
+      <img src="<?php echo get_template_directory_uri(); ?>/images/common/ico-wave-sp.svg" alt="bg" class="_only-SP">
+    </div>
     <div class="global_inner">
       <div class="titleBox">
         <h2 class="top_title-01 _small _left">
@@ -209,7 +164,8 @@
         </h2>
       </div>
       <div class="contentsBox">
-        <div class="top_text-01">日本スパ・ウエルネス協会は、セラピストの社会的地位の向上と確立、我が国における健全なエステティック普及や発展を目的として幅広い活動を展開している団体です。</div>
+        <?php $aboutText = get_field("top_about_text");  ?>
+        <?php if($aboutText): ?><div class="top_text-01"><?php echo $aboutText; ?></div><?php endif; ?>
         <div class="wp-block-buttons">
           <div class="wp-block-button"><a href="/about/" class="wp-block-button__link"><span>日本スパ・ウエルネス協会とは</span></a></div>
         </div>
@@ -228,24 +184,26 @@
         </span>
       </h2>
       <div class="top_text-01">当協会では、スパ・ウエルネス分野における専門性を高めるための多彩な資格をご用意しています。</div>
-      <div class="list_swiper-container">
-        <?php
-        $arg = array(
-          'posts_per_page' => 6,
-          'has_password' => false,
-          'post_type' => 'certificationslist',
-          'orderby' => 'date',
-          'order' => 'DESC'
-        );
-        $query = new WP_Query($arg);
-        if ($query->have_posts()): ?>
-          <?php get_template_part('list', 'certificationList', [
-            'is_slider' => true,
-            'query' => $query,
-          ]); ?>
-        <?php else: ?>
-          <p>現在、認定試験のご紹介はありません。</p>
-        <?php endif; ?>
+      <div class="slider">
+        <div class="list_swiper-container">
+          <?php
+          $arg = array(
+            'posts_per_page' => 6,
+            'has_password' => false,
+            'post_type' => 'certificationslist',
+            'orderby' => 'date',
+            'order' => 'DESC'
+          );
+          $query = new WP_Query($arg);
+          if ($query->have_posts()): ?>
+            <?php get_template_part('list', 'certificationList', [
+              'is_slider' => true,
+              'query' => $query,
+            ]); ?>
+          <?php else: ?>
+            <p>現在、認定試験のご紹介はありません。</p>
+          <?php endif; ?>
+        </div>
         <div class="button">
           <div class="swiper-button-prev list-button-prev">
             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -261,12 +219,28 @@
           </div>
         </div>
       </div>
-      <div class="buttonBox">
-        <div class="wp-block-buttons">
-          <div class="wp-block-button"><a href="/parts/" class="wp-block-button__link"><span>すべての資格・検定を見る</span></a></div>
-          <div class="wp-block-button"><a href=".pdf" class="wp-block-button__link"><span>年間スケジュール</span></a></div>
+      <?php if(have_rows('top_certificationList_button')): ?>
+        <div class="buttonBox">
+          <div class="wp-block-buttons">
+            <?php while(have_rows('top_certificationList_button')): the_row(); ?>
+              <?php
+                $type = get_sub_field('type');
+                $title = get_sub_field('title');
+                $url = get_sub_field('url');
+                $target = get_sub_field('target');
+                $file = get_sub_field('file');
+                if($type === "_file"){
+                  $url = $file;
+                  $target = true;
+                }
+              ?>
+              <div class="wp-block-button">
+                <a class="wp-block-button__link" href="<?php echo $url; ?>" <?php if( $target ): ?>target="_blank"<?php endif; //外部リンク ?>><span><?php echo $title; ?></span></a>
+              </div>
+            <?php endwhile; ?>
+          </div>
         </div>
-      </div>
+      <?php endif; ?>
     </div>
   </section>
   <section id="top_publications-01" class="top_publications-01">
@@ -319,65 +293,102 @@
       </div>
     </div>
   </section>
-  <section id="top_link-01" class="top_link-01">
-    <div class="global_inner">
-      <h2 class="top_title-01">
-        <span class="title-main">Link</span>
-        <span class="title-sub">関連リンク</span>
-        <span class="icon">
-          <?php get_template_part( '/images/ico/ico', 'star' ); ?>
-          <?php get_template_part( '/images/ico/ico', 'star' ); ?>
-          <?php get_template_part( '/images/ico/ico', 'star' ); ?>
-        </span>
-      </h2>
-      <div class="module_linkBox-01">
-        <div class="wrap">
-          <div class="inner">
-            <div class="titleBox">
-              <h3 class="title"><span>美容・健康関連業界に特化した求人情報サイト<br>「Beauty & Wellness Partners」</span></h3>
-            </div>
-            <div class="imageBox">
-              <div class="image">
-                <img src="/wp/wp-content/uploads/2025/10/noimage.png" alt="美容・健康関連業界に特化した求人情報サイト「Beauty & Wellness Partners」">
+  <?php if(have_rows('top_link_box') || have_rows('top_link_banner')): ?>
+    <section id="top_link-01" class="top_link-01">
+      <div class="global_inner">
+        <h2 class="top_title-01">
+          <span class="title-main">Link</span>
+          <span class="title-sub">関連リンク</span>
+          <span class="icon">
+            <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+            <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+            <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+          </span>
+        </h2>
+        <div class="module_linkBox-01">
+          <?php while(have_rows('top_link_box')): the_row(); ?>
+            <?php
+              $title = get_sub_field('title');
+              $text = get_sub_field('text');
+              $img = get_sub_field('img');
+              $thumb = wp_get_attachment_image_src($img, 'full');
+              $alt = get_post_meta($img, '_wp_attachment_image_alt', true);
+              $alt = $alt ? $alt : "image";
+            ?>
+            <div class="wrap">
+              <div class="inner">
+                <div class="titleBox">
+                  <h3 class="title"><span><?php echo $title; ?></span></h3>
+                </div>
+                <?php if($img): ?>
+                  <div class="imageBox">
+                    <div class="image">
+                      <img src="<?php echo $thumb[0]; ?>" alt="<?php echo $alt; ?>">
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <div class="contentsBox">
+                  <?php if($text): ?>
+                    <div class="text"><?php echo $text; ?></div>
+                  <?php endif; ?>
+                  <?php if(have_rows('button')): ?>
+                    <div class="module_button --small">
+                      <?php while(have_rows('button')): the_row(); ?>
+                        <?php
+                          $type = get_sub_field('type');
+                          $title = get_sub_field('title');
+                          $url = get_sub_field('url');
+                          $target = get_sub_field('target');
+                          $file = get_sub_field('file');
+                          if($type === "_file"){
+                            $url = $file;
+                            $target = true;
+                          }
+                        ?>
+                        <a class="_blue" href="<?php echo $url; ?>" <?php if( $target ): ?>target="_blank"<?php endif; //外部リンク ?>><span><?php echo $title; ?></span></a>
+                      <?php endwhile; ?>
+                    </div>
+                  <?php endif; ?>
+                </div>
               </div>
             </div>
-            <div class="contentsBox">
-              <div class="text">当協会登録企業様である、株式会社ミス・パリが運営する「Beauty & Wellness Partners」（以下 BWP）では、理美容国家資格や専門学校で学んで取得した資格を活かせる企業様とのベストマッチングをいたします。</div>
-              <div class="module_button --small">
-                <a href=".pdf" class="_blue" target="_blank"><span>ご案内パンフレットはこちら</span></a>
-                <a href="/parts/" class="_blue" target="_blank"><span>利用登録はBWPのホームページから</span></a>
+          <?php endwhile; ?>
+          <?php if(have_rows('top_link_banner')): ?>
+            <div class="wrap">
+              <div class="inner">
+                <div class="titleBox">
+                  <h3 class="title2">
+                    <span class="icon _left">
+                      <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+                    </span>  
+                    <span>関連教育機関</span>
+                    <span class="icon _right">
+                      <?php get_template_part( '/images/ico/ico', 'star' ); ?>
+                    </span>
+                  </h3>
+                </div>
+                <div class="bannerBox">
+                  <?php while(have_rows('top_link_banner')): the_row(); ?>
+                    <?php
+                      $url = get_sub_field('url');
+                      $target = get_sub_field('target');
+                      
+                      $img = get_sub_field('img');
+                      $thumb = wp_get_attachment_image_src($img, 'full');
+                      $alt = get_post_meta($img, '_wp_attachment_image_alt', true);
+                      $alt = $alt ? $alt : "image";
+                    ?>
+                  <a href="<?php echo $url; ?>" <?php if( $target ): ?>target="_blank"<?php endif; //外部リンク ?>>
+                    <img src="<?php echo $thumb[0]; ?>" alt="<?php echo $alt; ?>">
+                  </a>
+                  <?php endwhile; ?>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="wrap">
-          <div class="inner">
-            <div class="titleBox">
-              <h3 class="title2">
-                <span class="icon _left">
-                  <?php get_template_part( '/images/ico/ico', 'star' ); ?>
-                </span>  
-                <span>関連教育機関</span>
-                <span class="icon _right">
-                  <?php get_template_part( '/images/ico/ico', 'star' ); ?>
-                </span>
-              </h3>
-            </div>
-            <div class="bannerBox">
-              <a href="/parts/">
-                <img src="/wp/wp-content/uploads/2025/10/noimage.png" alt="美容・健康関連業界に特化した求人情報サイト「Beauty & Wellness Partners」">
-              </a>
-              <a href="/parts/">
-                <img src="/wp/wp-content/uploads/2025/10/noimage.png" alt="美容・健康関連業界に特化した求人情報サイト「Beauty & Wellness Partners」">
-              </a>
-              <a href="/parts/">
-                <img src="/wp/wp-content/uploads/2025/10/noimage.png" alt="美容・健康関連業界に特化した求人情報サイト「Beauty & Wellness Partners」">
-              </a>
-            </div>
-          </div>
+          <?php endif; ?>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <?php endif; ?>
 </main>
 <?php get_footer(); ?>

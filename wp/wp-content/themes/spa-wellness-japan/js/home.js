@@ -107,11 +107,48 @@
     });
   };
 
+  const tab = function () {
+    $(window).on('load', function () {
+      // 指定されたidのタブだけ表示し、他は非表示にする
+      function toggleTab($root, id) {
+        const $bodies = $root.find('.module_tab-body');
+        // すべて非表示にする（inline styleで display:none を付与）
+        $bodies.css('display', 'none');
+
+        // idが有効ならその要素を表示、無効なら先頭を表示（安全策）
+        const $target = id ? $bodies.filter('#' + id) : $();
+        if ($target.length) {
+          // 指定タブのみ表示（inline styleで display:block を付与）
+          $target.css('display', 'block');
+        } else {
+          // 一致するidが見つからない場合は最初のタブを表示
+          $bodies.first().css('display', 'block');
+        }
+      }
+
+      // 初期化：ページ読込時に現在の選択値で表示を揃える
+      $('.module_tab-02').each(function() {
+        const $root = $(this);
+        const $select = $root.find('.module_select-02 select');
+        const selected = $select.val(); // プレースホルダーだと空文字の可能性あり
+        toggleTab($root, selected);
+      });
+
+      // 変更イベント：選択が変わったら表示を切り替える
+      $(document).on('change', '.module_select-02 select', function() {
+        const $root = $(this).closest('.module_tab-02');
+        const val = $(this).val();
+        toggleTab($root, val);
+      });
+    });
+  }
+
   // ==========================================================================
   // 実行
   // ==========================================================================
   topSlider();
   //newsSlider();
   listSlider();
+  tab();
 
 })(jQuery);

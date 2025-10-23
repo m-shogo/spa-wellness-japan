@@ -703,6 +703,12 @@
 .top_mainVisual {
   position: relative;
   overflow-x: hidden;
+  @include breakPoint_over-PC {
+    display: grid;
+    grid-template-columns: auto 530px;
+    gap: 60px;
+    margin-right: calc(50% - 640px);
+  }
   .tm_swiper-container {
     .swiper-wrapper {
       .swiper-slide {
@@ -750,8 +756,7 @@
       transform: translateY(-50%);
       left: 14px;
       @include breakPoint_over-PC {
-        top: auto;
-        bottom: 20px;
+        left: 20px;
       }
       .swiper-pagination-bullet {
         opacity: 1;
@@ -773,6 +778,7 @@
     .catchcopy{
       position: relative;
       z-index: 2;
+      pointer-events: none;
       .main{
         display: flex;
         position: absolute;
@@ -786,6 +792,9 @@
         img{
           width: 400px;
           max-width: none;
+          @include breakPoint_over-PC {
+            width: 770px;
+          }
         }
       }
       .sub{
@@ -799,6 +808,14 @@
         font-weight: 500;
         line-height: 160%; /* 25.6px */
         letter-spacing: 0.8px;
+        @include breakPoint_over-PC {
+          padding-top: 70px;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 180%; /* 32.4px */
+          letter-spacing: 0.9px;
+        }
         span{
           color: #0696B1;
           font-weight: 600;
@@ -807,12 +824,25 @@
     }
   }
   .contents{
+    margin-top: 40px;
+    padding: 0 20px;
+    @include breakPoint_over-PC {
+      padding: 0;
+      max-width: 530px;
+    }
     .news{
-
+      padding: 30px;
+      background-color: #F6F7FB;
+      @include breakPoint_over-PC {
+        padding: 40px 40px 30px;
+      }
     }
     .button{
       margin-top: 40px;
       padding: 0 20px;
+      @include breakPoint_over-PC {
+        padding: 0;
+      }
       .title{
         display: grid;
         grid-template-columns: 41px auto 41px;
@@ -820,14 +850,6 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 30px;
-        @include breakPoint_over-PC{
-          margin-bottom: 0;
-          font-size: 20px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: normal;
-          letter-spacing: 1px;
-        }
         .wrap{
           display: inline-flex;
           flex-wrap: wrap;
@@ -842,6 +864,13 @@
           font-weight: 400;
           line-height: 30px; /* 136.364% */
           letter-spacing: 1.1px;
+          @include breakPoint_over-PC{
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 30px; /* 125% */
+            letter-spacing: 1.2px;
+          }
         }
         .sub{
           font-size: 12px;
@@ -850,6 +879,13 @@
           line-height: normal;
           letter-spacing: 0.6px;
           color: #164073;
+          @include breakPoint_over-PC{
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: 0.65px;
+          }
         }
         .icon{
           display: flex;
@@ -895,15 +931,31 @@
           @include breakPoint_over-PC {
             flex-direction: row;
             justify-content: center;
-            gap: 40px !important;
+            align-items: normal;
           }
           .wp-block-button{
             min-width: auto !important;
+            @include breakPoint_over-PC {
+              width: 50% !important;
+            }
             .wp-block-button__link{
               min-width: auto;
               max-width: none;
               @include breakPoint_over-PC {
-                min-width: 300px;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 120%; /* 18px */
+                letter-spacing: 0.75px;
+                padding-right: 45px;
+                padding: 15px 50px 15px 15px;
+                display: flex;
+                align-items: center;
+              }
+              &::after{
+                @include breakPoint_over-PC {
+                  right: 15px;
+                }
               }
             }
           }
@@ -1846,7 +1898,7 @@
   &._white{
     .title-main {
       &::before{
-        background-color: #FFFFFF;
+        background-color: #F6F7FB;
       }
     }
   }
@@ -2133,11 +2185,29 @@
 }
 
 .top_about-01{
+  position: relative;
   padding: 50px 0 60px;
   @include breakPoint_over-PC {
     padding: 126px 0 164px;
   }
+  .bg{
+    position: absolute;
+    top: 80px;
+    right: -180px;
+    @include breakPoint_over-PC {
+      top: 105px;
+      right: 0;
+    }
+    img{
+      width: 720px;
+      max-width: none;
+      @include breakPoint_over-PC {
+        width: 1297px;
+      }
+    }
+  }
   .global_inner{
+    z-index: 2;
     @include breakPoint_over-PC {
       display: grid;
       align-items: center;
@@ -2194,21 +2264,50 @@
   }
 }
 .top_certification-01{
+  position: relative;
   padding: 0 0 60px;
   @include breakPoint_over-PC {
     padding: 0 0 90px;
   }
+  &::before{
+    content: "";
+    position: absolute;
+    top: 121px;
+    left: -160px;
+    border-radius: 438px;
+    width: 438px;
+    height: 375px;
+    border-radius: 438px;
+    background: radial-gradient(64.29% 64.29% at 50% 35.71%, rgba(186, 237, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%);
+    filter: blur(100px);
+    z-index: 1;
+    background-color: #CEF1FD;
+    opacity: .9;
+    @include breakPoint_over-PC {
+      top: 166px;
+      left: -562px;
+      width: 993px;
+      height: 486px;
+      border-radius: 1336px;
+    }
+  }
   .global_inner{
     max-width: calc(1260px + 120px);
+    z-index: 2;
+  }
+  .slider{
+    position: relative;
   }
   .list_swiper-container{
-    margin-top: 30px;
+    margin-top: 20px;
     position: relative;
+    padding: 10px 0;
     @include breakPoint_over-PC {
-      margin: 60px 0 0;
-      max-width: 1260px;
+      margin: 50px auto 0;
+      max-width: 1120px;
       overflow: hidden;
     }
+    
     .swiper-wrapper{
       @include breakPoint_over-PC {
         
@@ -2228,7 +2327,7 @@
     justify-content: space-between;
     gap: 40px;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 20px;
     pointer-events: none;
     @include breakPoint_over-PC {
       margin-top: 0;
@@ -2262,23 +2361,14 @@
         border: 1px solid #3C6FAC;
         background-color: #3C6FAC;
         border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        @include breakPoint_over-PC{
+          width: 50px;
+          height: 50px;
+        }
         path,rect{
           transition: $transition-duration;
-        }
-      }
-      &::before{
-        @include breakPoint_over-PC{
-          content: "";
-          pointer-events: none;
-          height: 100vh;
-          width: calc(100% + 40px);
-          transform: translateY(-50%);
-          background-color: #fff;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 1;
-          margin: 0 -20px;
         }
       }
       &::after{
@@ -2333,11 +2423,34 @@
   position: relative;
   padding: 60px 0;
   background-color: #F6F7FB;
+  overflow: hidden;
   @include breakPoint_over-PC {
     padding: 100px 0;
   }
+  &::before{
+    content: "";
+    position: absolute;
+    top: -53px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 406px;
+    height: 195px;
+    border-radius: 406px;
+    background: radial-gradient(114.02% 114.02% at 50% 19.87%, rgba(186, 237, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%);
+    filter: blur(100px);
+    background-color: #CEF1FD;
+    z-index: 1;
+    opacity: .9;
+    @include breakPoint_over-PC {
+      top: -225px;
+      width: 1336px;
+      height: 639px;
+      border-radius: 1336px;
+    }
+  }
   .global_inner{
     max-width: calc(960px + 120px);
+    z-index: 2;
   }
   .top_text-01{
     margin-bottom: 40px;
@@ -2355,7 +2468,29 @@
   @include breakPoint_over-PC {
     padding: 100px 0;
   }
+  &::before{
+    content: "";
+    position: absolute;
+    top: 120px;
+    right: -160px;
+    border-radius: 438px;
+    width: 438px;
+    height: 375px;
+    background: radial-gradient(64.29% 64.29% at 50% 35.71%, rgba(186, 237, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%);
+    filter: blur(100px);
+    background-color: #CEF1FD;
+    z-index: 1;
+    opacity: .9;
+    @include breakPoint_over-PC {
+      top: 227px;
+      right: -429px;
+      width: 1173px;
+      height: 639px;
+      border-radius: 1173px;
+    }
+  }
   .global_inner{
     max-width: calc(865px + 120px);
+    z-index: 2;
   }
 }

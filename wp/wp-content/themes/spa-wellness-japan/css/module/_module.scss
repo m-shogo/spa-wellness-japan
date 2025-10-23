@@ -509,6 +509,7 @@ label {
       border: 1px solid $color-primary;
       outline: 1px solid #BCD4EC;
       outline-offset: -6px;
+      background-color: $color-secondary;
       @include breakPoint_over-PC {
         padding: 30px 40px;
       }
@@ -2189,6 +2190,65 @@ label {
   }
 }
 
+.module_select-02{
+  padding: 0 20px;
+  min-width: 240px;
+  @include breakPoint_over-TB{
+    padding: 0;
+    min-width: 190px;
+  }
+  .wrap{
+    position: relative;
+    &::after{
+      content: "\f078";
+      @include font-awesome(500);
+      position: absolute;
+      top: 50%;
+      right: 0;
+      pointer-events: none;
+      transform: translateY(-50%);
+      color: $color-secondary;
+      width: 40px;
+      height: 100%;
+      background-color: $color-primary;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 1.2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include breakPoint_over-TB{
+        height: 30px;
+      }
+    }
+  }
+  select{
+    background-color: $color-secondary !important;
+    border: 1px solid $color-primary;
+    padding: 5px 50px 5px 10px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.65px;
+    color: $color-primary;
+    @include breakPoint_over-TB{
+      height: 30px;
+    }
+    &:hover,&:focus{
+      @include breakPoint_over-TB{
+        box-shadow: none;
+      }
+    }
+    option{
+
+    }
+  }
+}
 
 .module_category-01{
   border-bottom: 1px solid #BCD4EC;
@@ -2241,7 +2301,7 @@ label {
   display: grid;
   gap: 40px;
   .wrap{
-    background-color: transparent !important;
+    background-color: $color-secondary;
     border-radius: 5px;
     border: 1px solid $color-primary;
     outline: 1px solid #BCD4EC;
@@ -2265,14 +2325,26 @@ label {
         }
       }
     }
+    &:has(.imageBox){
+      .inner{
+        @include breakPoint_over-PC{
+          display: grid;
+          grid-template-areas:
+            "title title"
+            "image contents";
+          grid-template-columns: 260px 1fr;
+          grid-template-rows: auto auto;
+          gap: 40px 40px;
+          align-items: center;
+        }
+      }
+    }
     .inner{
       @include breakPoint_over-PC{
         display: grid;
         grid-template-areas:
-          "title title"
-          "image contents";
-        grid-template-columns: 260px 1fr;
-        grid-template-rows: auto auto;
+          "title"
+          "contents";
         gap: 40px 40px;
         align-items: center;
       }
@@ -2323,9 +2395,6 @@ label {
                 width: 30px;
                 height: 1px;
                 background-color: #164073;
-                @include breakPoint_over-PC {
-                  width: 15px;
-                }
               }
             }
             &._right{
@@ -2334,9 +2403,6 @@ label {
                 width: 30px;
                 height: 1px;
                 background-color: #164073;
-                @include breakPoint_over-PC {
-                  width: 15px;
-                }
               }
             }
             svg{
@@ -2371,6 +2437,7 @@ label {
         @include wp-block-button-style;
         .module_button.--small{
           margin-top: 20px;
+          display: inline-flex;
           flex-direction: column;
           gap: 10px;
           @include breakPoint_over-PC{
@@ -2409,6 +2476,9 @@ label {
         a{
           display: flex;
           transition: $transition-duration;
+          &::after{
+            content: none;
+          }
           &:hover{
             opacity: .7;
           }
@@ -2528,6 +2598,103 @@ label {
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+.module_tab-02{
+  .module_tab-head{
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 5px;
+    @include breakPoint_over-PC{
+      justify-content: space-between;
+    }
+    .title{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      .main{
+        font-family: Marcellus;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 2.2px;
+        @include breakPoint_over-PC{
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          letter-spacing: 2.4px;
+        }
+      }
+      .sub{
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        color: #164073;
+        @include breakPoint_over-PC{
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+      }
+    }
+    .module_select-02{
+    }
+  }
+  .module_tab-body{
+    margin: 0;
+    .module_newsList-01{
+      article{
+        &:last-child{
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .tab-button{
+    margin-top: 15px;
+    text-decoration: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.7px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    &:hover{
+      .icon{
+        background-color: $color-secondary;
+        svg{
+          path{
+            stroke: #3C6FAC;
+          }
+        }
+      }
+    }
+    .icon{
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background-color: #3C6FAC;
+      border: 1px solid #3C6FAC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: $transition-duration;
+      svg{
+        path{
+          transition: $transition-duration;
         }
       }
     }
