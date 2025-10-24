@@ -188,7 +188,7 @@
         <div class="list_swiper-container">
           <?php
           $arg = array(
-            'posts_per_page' => 6,
+            'posts_per_page' => -1,
             'has_password' => false,
             'post_type' => 'certificationslist',
             'orderby' => 'date',
@@ -284,8 +284,8 @@
               <div class="title">IPSN国際資格</div>
               <div class="text">ＩＰＳＮ（国際職業人標準機構）は、各国の技術・教育レベルの基準を確認し、各国の資格の相互認証を目指す団体です。海外でも通用するこのライセンスは、就職・転職・スキルアップの強力な武器となり、グローバルなキャリア形成を目指す方に最適です。</div>
               <div class="wp-block-buttons">
-                <div class="wp-block-button button-type02"><a href="/parts/" class="wp-block-button__link" target="_blank"><span>日本語版：公式ホームページはこちら</span></a></div>
-                <div class="wp-block-button button-type02"><a href="/parts/" class="wp-block-button__link" target="_blank"><span>英語版：公式ホームページはこちら</span></a></div>
+                <div class="wp-block-button button-type02"><a href="https://theipsnjp.org/" class="wp-block-button__link" target="_blank"><span>日本語版：公式ホームページはこちら</span></a></div>
+                <div class="wp-block-button button-type02"><a href="https://theipsn.org/" class="wp-block-button__link" target="_blank"><span>英語版：公式ホームページはこちら</span></a></div>
               </div>
             </div>
           </div>

@@ -674,7 +674,7 @@ window.addEventListener('resize', setVw);
   // ==========================================================================
   const scrollHint = function () {
     window.addEventListener('DOMContentLoaded', function () {
-      $('.wp-block-flexible-table-block-table').addClass('js-scrollable');
+      $('.wp-block-flexible-table-block-table.is-scroll-on-mobile,.wp-block-flexible-table-block-table.is-scroll-on-pc').addClass('js-scrollable');
       
       new ScrollHint('.js-scrollable', {
         //scrollHintIconAppendClass: 'scroll-hint-icon-green', // white-icon will appear

@@ -115,7 +115,7 @@ a {
     @include breakPoint_over-PC {
       display: inline-block; // IE,Edgeバグ用
       color: inherit;
-      text-decoration: inherit;
+      text-decoration: none;
       pointer-events: none;
     }
   }

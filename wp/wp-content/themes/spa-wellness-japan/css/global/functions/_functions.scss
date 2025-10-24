@@ -319,7 +319,7 @@ body {
   @include wp-block-newsCard-style; // ニュースカード
   @include wp-block-newsList-style; // ニュースリスト
   @include wp-block-navigation-style; // ナビゲーション
-  @include wp-block-other; // その他
+  //@include wp-block-other; // その他
 }
 
 // ------------------------------
@@ -659,6 +659,13 @@ body {
   mark.has-inline-color.has-gray-color {
     color: $color-gray-background;
   }
+  .wp-block-group-is-layout-flex,.wp-block-columns-is-layout-flex{
+    .wp-block-group-is-layout-flex,.wp-block-columns-is-layout-flex{
+      .wp-block-group{
+        margin-top: 0;
+      }
+    }
+  }
 }
 
 // ------------------------------
@@ -679,14 +686,6 @@ body {
       .has-background
     ) {
       margin-top: 0 !important;
-    }
-  }
-  .wp-block-group {
-    & + .wp-block-columns {
-      margin-top: 24px;
-      @include breakPoint_over-PC {
-        margin-top: 40px;
-      }
     }
   }
 }
@@ -924,6 +923,12 @@ body {
     @include breakPoint_over-PC() {
       gap: 24px !important;
     }
+    & + .wp-block-buttons{
+      margin-top: 16px;
+      @include breakPoint_over-PC() {
+        margin-top: 20px;
+      }
+    }
     &:has(.button-type02){
       gap: 20px !important;
     }
@@ -967,11 +972,7 @@ body {
         }
       }
       &:not(.has-custom-width) {
-        // デフォルトサイズ
-        width: 100%;
         @include breakPoint_over-PC {
-          width: auto;
-          min-width: calc(33.333% - 24px * 2 / 3);
         }
       }
       .wp-block-button__link {
@@ -1420,9 +1421,51 @@ body {
     margin-top: 24px;
     margin-bottom: 24px;
     &.scroll-hint {
-      padding-bottom: 10px;
-      overflow: hidden !important;
-      overflow-x: auto !important;
+      &.is-scroll-on-mobile{
+        padding-bottom: 10px;
+        overflow: hidden !important;
+        overflow-x: auto !important;
+        @include breakPoint_over-PC {
+          padding-bottom: 0;
+          overflow: visible !important;
+        }
+        table{
+          table-layout: auto !important;
+          @include breakPoint_over-PC {
+            width: 100% !important;
+          }
+          tr {
+            th,
+            td {
+              min-width: 8em;
+              @include breakPoint_over-PC {
+                min-width: auto;
+              }
+            }
+          }
+        }
+      }
+      &.is-scroll-on-pc{
+        @include breakPoint_over-PC {
+          padding-bottom: 10px;
+          overflow: hidden !important;
+          overflow-x: auto !important;
+        }
+        table{
+          width: 100% !important;
+          @include breakPoint_over-PC {
+            table-layout: auto !important;
+          }
+          tr {
+            th,
+            td {
+              @include breakPoint_over-PC {
+                min-width: 8em;
+              }
+            }
+          }
+        }
+      }
     }
     // スクロールバー色変更（webkit用）
     &::-webkit-scrollbar {
@@ -1445,9 +1488,29 @@ body {
       }
     } // &._scroll
     table {
-      table-layout: auto !important;
-      @include breakPoint_over-PC {
-        width: 100% !important;
+      width: 100%;
+      &.is-stacked-on-mobile{
+        > *:first-child{
+          tr{
+            &:first-of-type{
+              th,
+              td {
+                &:first-of-type{
+                  border-top-color: #3C6FAC !important;
+                }
+              }
+            }
+          }
+        }
+        tr {
+          th,
+          td {
+            border-top-color: transparent !important;
+            @include breakPoint_over-TB {
+              border-top-color: #3C6FAC !important;
+            }
+          }
+        }
       }
       thead {
         border-bottom: 0;
@@ -1459,15 +1522,12 @@ body {
         th,
         td {
           border-color: #3C6FAC !important;
-          padding: 15px 30px;
+          padding: 15px;
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
           line-height: 150%; /* 24px */
           letter-spacing: 0.8px;
-          margin-top: 24px;
-          margin-bottom: 24px;
-          min-width: 8em;
         }
         th{
           color: #3C6FAC;
@@ -1476,31 +1536,9 @@ body {
       }
     }
   }
-  // Flexible Table Block
-  // .wp-block-flexible-table-block-table {
-
-  //   @include breakPoint_over-PC {
-  //   }
-  //   > table {
-  //     thead,
-  //     tbody {
-  //       tr {
-  //         th {
-  //           background-color: $color-primary !important;
-  //           color: $color-secondary !important;
-  //           border-color: $color-gray-border-02 !important;
-  //         }
-  //       }
-  //     }
-  //     tr {
-  //       th,
-  //       td {
-  //         border-color: $color-gray-border-02 !important;
-  //         padding: 16px 20px;
-  //       }
-  //     }
-  //   }
-  // }
+  .scroll-hint-icon{
+    height: auto;
+  }
 }
 
 // ------------------------------
@@ -2375,9 +2413,9 @@ body {
 // ------------------------------
 @mixin wp-block-other {
   .wp-block-columns + .wp-block-columns {
-    margin-top: 32px;
+    margin-top: 24px;
     @include breakPoint_over-PC {
-      margin-top: 48px;
+      margin-top: 32px;
     }
   }
 }
